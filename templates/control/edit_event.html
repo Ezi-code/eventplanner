@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create Event
+{% endblock title %}
+
+{% block content %}
+
+
+<article class="contact-us" id="contact">
+    <h2 class="contact-hd">Edit Event: {{event.title }}</h2>
+    <section class="contac-form">
+        <h4 class="hd-4">Please fill the form below to edit event</h4>
+
+        <form class="form" action="{% url 'control:edit_event' event.title %}" method="post"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p>
+                <input type="text" name="title" placeholder="Event title" required autocomplete="on"
+                    value="{{event.title}}">
+            </p>
+            <p>
+                <input type="text" name="description" placeholder="Description of event" required autocomplete="on"
+                    value="{{event.description}}">
+            </p>
+            <p>
+                <input type="text" name="location" placeholder="Location of event" required autocomplete="on"
+                    value="{{event.location}}">
+            </p>
+            <p>
+                <input type="number" name="price" placeholder="Price of RSVP" required autocomplete="on"
+                    value="{{event.price_tag}}">
+            </p>
+            <p>
+                <img src="{{ event.image.url }}" alt="Event image" width="200" height="200">
+                <input type="file" name="image" accept="image/*">
+            </p>
+            <p>
+                <input type="date" name="date" placeholder="Date of event" required autocomplete="on"
+                    value="{{ event.date|date:'Y-m-d' }}">
+            </p>
+            <p>
+                <input type="time" name="time" placeholder="time of event" required autocomplete="on"
+                    value="{{event.time|time:'h:i'}}">
+            </p>
+            <textarea name="details" id="message" cols="30" rows="10" required>{{event.details}}</textarea>
+            <br />
+            <p>
+                <button type="submit">Save Changes</button>
+            </p>
+        </form>
+    </section>
+</article>
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+RSVP
+{% endblock title %}
+
+{% block content %}
+
+
+
+
+<center>
+    <h3 class="event-list-h">Available Events</h3>
+</center>
+
+<article id="mission mission-sec">
+    <div class="mission">
+    {% for event in events %}            
+        <section class="mission-content">
+                <h2>{{ event.title }}</h2>
+                    {% if event.image %}<img src="{{event.image.url}}" alt="">{% endif %}
+                <div>
+                    <p><a href="{% url 'main:event-details' event.title %}">{{ event.description }}</a>
+                    </p>
+                </div>
+                
+                
+        </section>
+        {%empty%}
+        <p>No items yet </p>
+        {% endfor %}
+    </div>
+</article>
+
+
+
+
+<center>
+    <h3 class="event-list-h"> Previous Events </h3>
+</center>
+
+<article id="mission mission-sec">
+    <div class="mission">
+        {% for event in closed %}
+        <section class="mission-content">
+            <h2>{{ event.title|safe }}</h2>
+            <h3>{{event.description|safe}}</h3>
+            <img src="{{event.image}}" alt="">
+            <div>
+                <p>{{ event.details|safe }}</p>
+            </div>
+            <br>
+        </section>
+        {%empty%}
+        <p>No items yet</p>
+        {% endfor %}
+    </div>
+</article>
+
+{% endblock content %}

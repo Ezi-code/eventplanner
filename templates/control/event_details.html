@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}
+Details of {{event.title}}
+{% endblock title %}
+
+{% block content %}
+<main>
+    <style>
+        .user-nav {
+            background-color: rgba(214, 213, 208, 0.486);
+            display: flex;
+            height: 3em;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            /* padding: 1rem; */
+            position: sticky;
+            color: white;
+            border-bottom: 3px solid rgba(171, 177, 163, 0.219);
+            /* font-size: 1.5rem; */
+        }
+
+        .user-nav a {
+            color: black;
+            text-decoration: none;
+            /* padding-top: 1rem; */
+            margin: 1rem;
+        }
+
+        .user-nav a:hover {
+            color: rgb(167, 123, 13);
+            /* border-radius: 10px; */
+        }
+
+        .notification {
+            border: 1px solid rgba(207, 187, 187, 0.651);
+            padding: 1rem;
+            margin: 1.5rem 0.5rem;
+            height: auto;
+            /* display: flex; */
+            justify-content: space-between;
+            border-radius: 0.5rem;
+
+        }
+
+        .action-btn a {
+            border: 1px solid tomato;
+            padding: 0.3rem;
+            border-radius: 10%;
+            color: black;
+            text-decoration: none;
+            margin: 1rem 1rem;
+        }
+
+        .notification a:hover {
+            color: rgb(167, 123, 13);
+        }
+
+        .table {
+            width: 100%;
+            /* border-collapse: collapse; */
+            border: 1px solid black;
+            margin-top: 1rem;
+            padding: 0.2rem;
+        }
+
+        main {
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+    </style>
+
+    <div class="user-nav">
+        <section class="options">
+            <a href="{% url 'control:dashboard' %}">My Events</a>
+            <a href="">Budgets</a>
+            <a href="" onclick="hello()">Notifications</a>
+        </section>
+    </div>
+
+    <section class="notification">
+        <h3>{{event.title}}</h3>
+        <table class="table">
+            <tr>
+                <td><b>Date</b></td>
+                <td>{{event.date}}</td>
+            </tr>
+            <tr>
+                <td><b>Time</b></td>
+                <td>{{event.time}}</td>
+            </tr>
+            <tr>
+                <td><b>Location</b></td>
+                <td>{{event.location}}</td>
+            </tr>
+            <tr>
+                <td><b>Attendees</b></td>
+                <td>{{attendants}}</td>
+        </table>
+    </section>
+    <div class="action-btn">
+        <a href="{% url 'control:edit_event' event.title %}">Edit</a> <a
+            href="{% url 'control:delete_event' event.title %}">delete</a>
+    </div>
+</main>
+{% endblock content %}

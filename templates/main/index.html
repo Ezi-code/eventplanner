@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+
+<main>
+    <article>
+        <section class="banner"
+            style="background-image:url('https://www.shutterstock.com/image-photo/luxury-table-setting-260nw-632155661.jpg');">
+            <div class="banner-header">
+                <h2>
+                    Wants to plan your event? <br> <span class="h-color"><a href="{% url 'control:create_event'%}"
+                            style="text-decoration: none; color: white;">Get Started</a></span>
+                </h2>
+            </div>
+        </section>
+    </article>
+
+    <article>
+        <section class="activity-section" id="activities">
+            <!-- <h2>Our Avtivities</h2> -->
+            <div class="boxes">
+                <div class="box">
+                    <img src="" alt="">
+                    <h3>Header</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio ea voluptatum adipisci
+                        dolores dolorum veniam doloremque fugit nulla officiis quo eveniet et minima inventore fugiat
+                        error nostrum, quos assumenda voluptas.</p>
+                </div>
+                <div class="box">
+                    <img src="" alt="">
+                    <h3>Header</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio ea voluptatum adipisci
+                        dolores dolorum veniam doloremque fugit nulla officiis quo eveniet et minima inventore fugiat
+                        error nostrum, quos assumenda voluptas.</p>
+                </div>
+                <div class="box">
+                    <img src="" alt="">
+                    <h3>Header</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio ea voluptatum adipisci
+                        dolores dolorum veniam doloremque fugit nulla officiis quo eveniet et minima inventore fugiat
+                        error nostrum, quos assumenda voluptas.</p>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+{% endblock content %}

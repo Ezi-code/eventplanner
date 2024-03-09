@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+
+            <a href="{% url 'main:home' %}" style="text-decoration: none; color: tomato;">
+                <h2 class="navbar-header">Event Planner</h2>
+            </a>
+
+            <div class="navbar-links">
+                <a href="{% url 'main:all_events'%}">find events</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'control:create_event' %}">create event</a>
+                <a href="{% url 'control:dashboard' %}">Dashboard</a>
+                <a href="{% url 'accounts:logout' %}">logout</a>
+                <a href="#">{{request.user}}</a>
+                {% else %}
+                <a href="{% url 'accounts:register' %}">register</a>
+                <a href="{% url 'accounts:login' %}">login</a>
+                {% endif %}
+            </div>
+            <section class="navbar-toggle">
+                <a href="javascript:void(0);" class="icon" onclick="toggleNavbar()">&#9776;</a>
+            </section>
+        </nav>
+    </header>
+    {% block content %}
+
+    {% endblock content %}
+
+    <footer class="footer">
+        <section class="newsletter section">
+            <h2>Subscribe to our newsletter</h2>
+            <form action="{% url 'main:send_mail' %}" method="post">
+                {% csrf_token %}
+                <p>
+                    <input type="email" name="email" id="email" required autocomplete="on">
+                </p>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+        <section class="social-media-links section">
+            <h2>follow us on: </h2>
+            <ul>
+                <li><a href="">facebook</a></li>
+                <li><a href="">twitter</a></li>
+                <li><a href="">instagram</a></li>
+                <li><a href="">the excahnge</a></li>
+            </ul>
+        </section>
+        <section class="useful-links section">
+            <h2>useful links</h2>
+            <ul>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Online Training Link</a></li>
+                <li><a href="">Youth Serminars</a></li>
+                <li><a href="">Support Us</a></li>
+            </ul>
+        </section>
+    </footer>
+
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+<html />

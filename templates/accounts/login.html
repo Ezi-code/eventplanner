@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+
+<article class="contact-us" id="contact">
+    <h2 class="contact-hd">Login</h2>
+    <section class="contac-form">
+        <!-- <h4 class="hd-4">Please fill the form below to contact us </h4> -->
+
+        <form class="form" action="{% url 'accounts:login' %}" method="post">
+            {% csrf_token %}
+            <p>
+                <input type="text" name="username" id="fullname" placeholder="User Name" required autocomplete="on">
+            </p>
+            <p>
+                <input type="password" name="password" id="email" placeholder="Password" required autocomplete="on">
+            </p>
+            <p>
+                <button type="submit">Login</button>
+            </p>
+        </form>
+    </section>
+</article>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+RSVP
+{% endblock title %}
+
+{% block content %}
+<article class="contact-us" id="contact">
+    <h2 class="contact-hd">RSVP Form for: {{event.title}}</h2>
+    <section class="contac-form">
+        <h4 class="hd-4">Please fill the form below to reserve your spot</h4>
+
+        <form class="form" action="{% url 'main:rsvp' event.title %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p>
+                <input type="text" name="name" placeholder="Full Name" required autocomplete="on">
+            </p>
+            <p>
+                <input type="email" name="email" placeholder="email" required autocomplete="on">
+            </p>
+            <p>
+                <input type="tel" name="tel" placeholder="Phone Number" required autocomplete="on">
+            </p>
+            <br>
+            <p>
+                Price for a ticket is: GHS {{ event.price_tag }}
+            </p>
+            <p>
+                <input type="number" name="ticket" placeholder="Number of tickets" required autocomplete="on">
+            </p>
+            <p>
+                <button type="submit">Reserver Spot</button>
+            </p>
+        </form>
+    </section>
+</article>
+{% endblock content %}

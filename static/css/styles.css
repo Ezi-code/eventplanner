@@ -1,0 +1,772 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Start of navbar section */
+.navbar {
+    display: flex;
+    position: sticky;
+    height: 13vh;
+    width: 100%;
+    z-index: 0;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.084);
+}
+
+.navbar-header>a {
+    font-weight: 800;
+    font-size: 2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    color: rgb(255, 141, 2);
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #000000d4;
+    padding: 1rem;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+
+.navbar-links a:hover {
+    color: rgba(255, 68, 0, 0.756);
+}
+
+/* End of navbar section */
+
+
+.event-list-h{
+    border-bottom: 3px solid tomato;
+    padding-top: 1rem;
+    display: inline-block;
+}
+
+
+
+/* Start of banner */
+.banner {
+    /* border: 1px solid red; */
+    margin: 1rem;
+    min-height: 100vh;
+    /* width: 100%; */
+    padding: 1rem;
+    margin: 2.5rem;
+    border-radius: 10px;
+    background-image: url('../images/banner.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.banner-header {
+    max-height: 80vh;
+    color: #fff;
+    font-style: oblique;
+    align-items: center;
+    text-align: left;
+    width: 50%;
+    font-size: 2.8rem;
+    justify-content: center;
+}
+
+.h-color {
+    background-color: hsla(0, 100%, 50%, 0.596);
+    color: white;
+    padding: 0.25rem;
+    border-radius: 10px;
+}
+
+/* End of banner */
+
+.activity-section {
+    padding: 1rem;
+    margin: 10rem 1rem;
+}
+
+.activity-section h2 {
+    text-align: center;
+    margin: 1rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box {
+    max-width: 400px;
+    border-radius: 1rem;
+    background-color: hsla(208, 100%, 97%, 0.349);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.215);
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    margin: 1rem;
+}
+
+.box:hover {
+    background-color: hsla(208, 100%,
+            /* font-size: 1.3rem; */
+            97%, 0.349);
+    box-shadow: 3px 3px 3px 3px rgba(255, 116, 9, 0.624);
+}
+
+/* End of activity section */
+
+/* Start of about section */
+.about-section {
+    margin: 2rem 4rem;
+    padding: 1rem;
+    min-height: 50vh;
+    display: flow-root;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px gainsboro;
+    background-color: rgba(255, 243, 204, 0.275);
+
+}
+
+.about-section h2 {
+    text-align: center;
+    padding: 1rem;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.about-section img {
+    max-width: 60%;
+    border-radius: 5%;
+    float: left;
+    display: flow-root;
+    margin: 2rem 1rem;
+    outline: 5px solid gainsboro;
+    outline-offset: 0.25rem;
+}
+
+.about-section p {
+    justify-content: center;
+    margin: 2rem auto;
+}
+
+.attend-btn{
+    background-color: tomato;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 48%;
+
+}
+
+/* End of about section */
+
+/* Start of mission section */
+.mission {
+    display: flex;
+    flex-wrap: wrap;
+/*    justify-content: space-evenly;*/
+}
+.mission-content {
+    border-radius: 5%;
+    padding: 1rem;
+/*    margin: auto;*/
+    display: inline-block;
+    min-height: 32vh;
+    width: 29vw;
+    margin: 1rem;
+    background-color: rgba(217, 208, 196, 0.173);
+    box-shadow: 2px 2px 2px 2px rgba(255, 222, 173, 0.938);
+    text-align: center;
+
+}
+
+.ms-hd {
+    margin-top: 7rem;
+    text-align: center;
+    font-size: 2rem;
+    justify-content: center;
+}
+
+.mission-content:hover {
+    background-color: aliceblue;
+    box-shadow: 3px 3px 3px 3px rgba(255, 116, 9, 0.624);
+}
+
+.mission-content img {
+    max-width: 60vw;
+    max-height: 40vh;
+/*    border-radius: 50%;*/
+    align-content: center;
+    margin: 1rem auto;
+}
+.mission-content p a{
+    text-decoration: none;
+    color: black;
+}
+
+.mission-content p {
+    float: left;
+}
+
+/* End of mission section */
+
+/* Start of vission section  */
+
+.vission {
+    /* border: 1px solid brown; */
+    margin-top: 3rem;
+    /* display: flow-root; */
+
+}
+
+.hd {
+    padding: 0.5rem;
+    justify-content: center;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.vission-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgba(217, 208, 196, 0.173);
+    box-shadow: 2px 2px 2px 2px rgba(255, 222, 173, 0.938);
+    margin: 3rem 5rem;
+    border-radius: 5%;
+}
+
+.content-text {
+    width: 60%;
+    padding: 0.25rem;
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.vission-content img {
+    width: 40vw;
+    height: 40vh;
+    border-radius: 7%;
+    margin: 1rem auto;
+}
+
+/* End of vission section  */
+
+/* Start of contact section  */
+.contact-us {
+    margin: 8rem auto;
+    max-width: 60%;
+    justify-content: space-evenly;
+    padding: 1rem;
+    box-shadow: 2px 3px 2px 3px #ccccccc9;
+    border-radius: 1rem;
+}
+
+/* .contact-us h2{
+    text-align: center;
+} */
+
+.contact-form {
+    padding: 1rem;
+}
+
+.contact-hd {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.hd-4 {
+    text-align: center;
+
+}
+
+.form input {
+    padding: 0.5rem 1rem;
+    margin: 0.25rem auto;
+    width: 100%;
+    height: 6vh;
+    border-radius: 1rem;
+    align-items: center;
+    /* text-align: center; */
+    color: #000;
+    border: 1.5px solid #dedede;
+}
+
+.form {
+    margin-top: 1rem;
+}
+
+.form textarea {
+    padding: 0.5rem;
+    margin: 0.25rem auto;
+    max-width: 100%;
+    min-width: 100%;
+    height: 30vh;
+    border-radius: 1rem;
+    align-items: center;
+    /* text-align: center; */
+    color: #000;
+    border: 1.5px solid #dedede;
+}
+
+.form input:hover,
+.form input:focus {
+    border: 1.25px solid tomato;
+}
+
+.form textarea:hover {
+    border: 1.25px solid tomato;
+}
+
+.form button {
+    width: 100%;
+    height: 5.7vh;
+    border: 0px solid lightcoral;
+    color: #fff;
+    border-radius: 5rem;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    background-color: tomato;
+}
+
+.form button:hover {
+    background-color: rgb(169, 208, 243);
+    color: black;
+}
+
+/* End of cantact section */
+
+/* Start of footer section */
+
+.footer {
+    /* border: 1px solid black; */
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+
+}
+
+.section {
+    margin: 1rem;
+}
+
+.section h2 {
+    text-transform: uppercase;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.section ul li {
+    list-style: none;
+}
+
+.section ul li a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: white;
+
+}
+
+.section ul li a:hover {
+    color: tomato;
+
+}
+
+.newsletter form input {
+    width: 100%;
+    height: 5vh;
+    border-radius: 1rem;
+    border: 1.25px solid tomato;
+}
+
+.newsletter form button {
+    width: 50%;
+    height: 5vh;
+    border: 0px solid lightcoral;
+    color: #fff;
+    border-radius: 5rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    background-color: tomato;
+}
+
+/* End of footer section */
+
+/* Media query */
+@media screen and (max-width:1024px) {
+    /* Adjust font size for mobile */
+
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: #fff;
+        top: 80px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        text-align: center;
+    }
+
+
+    .navbar-toggle {
+        display: inherit;
+        text-align: right;
+        padding: 1rem;
+        /* color: black; */
+    }
+
+    .navbar-toggle:hover {
+        color: #fff;
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+
+    .navbar a:hover,
+    .navbar a:active {
+        color: tomato;
+    }
+
+    .icon {
+        font-size: 24px;
+        color: #fff;
+        border-radius: 12px;
+        background-color: tomato;
+        padding: 0.5rem 1rem;
+
+    }
+
+    .icon:hover {
+        color: #000;
+        background-color: rgba(252, 207, 199, 0.658);
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+
+    .navbar-header {
+        font-size: 1.2rem;
+    }
+
+    /* Banner section */
+    .banner {
+        margin: 1rem;
+        min-height: 80vh;
+        padding: 0.5rem;
+        margin: 1rem;
+        border-radius: 10px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .banner-header {
+        font-size: 1.8rem;
+    }
+
+    /* End of banner section */
+
+    .activity-section {
+        padding: 0;
+    }
+
+
+
+    .mission {
+        /*            margin: 1rem auto;*/
+        padding: 0;
+    }
+
+    .ms-hd {
+        font-size: 2rem;
+        text-align: center;
+        /* padding: 1rem; */
+    }
+
+    /* Start of vission section */
+
+    .vission {
+        margin: 4rem auto;
+        padding: 0;
+    }
+
+    .hd {
+        padding: 0.5rem;
+        justify-content: center;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .vission-content {
+        display: block;
+        margin: 1rem 1.5rem;
+        padding: 1rem;
+    }
+
+    .vission-content img {
+        width: 90%;
+    }
+
+    .content-text {
+        min-width: 80%;
+        padding: 0.25rem;
+        text-align: center;
+        margin: 1rem auto;
+    }
+
+    /* End of vission section */
+
+    /* Mission content */
+    .mission-content {
+        height: 55vh;
+        width: 80vw;
+        align-content: center;
+    }
+     .mission-content img {
+        min-height: 20vh;
+        max-width: 40vw;
+    }
+
+
+    /* End of mission content */
+
+    /* About section */
+
+    .about-section {
+        margin: 1rem;
+        /* display: block; */
+    }
+
+    .about-section img {
+        max-width: 90%;
+        /* display: inline-block; */
+    }
+
+    .about-content {
+        display: block;
+    }
+
+    /* End of about section */
+
+    /* Contact section */
+    .contact-us {
+        margin: 5rem auto;
+        max-width: 90%;
+    }
+
+    .contact-hd {
+        text-align: center;
+        font-size: 2rem;
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .hd-4 {
+        text-align: center;
+
+    }
+
+    /* End of contact section */
+}
+
+
+
+/* mobile Screen view  */
+
+@media screen and (max-width:500px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: #fff;
+        top: 80px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        text-align: center;
+    }
+
+
+    .navbar-toggle {
+        display: inherit;
+        text-align: right;
+        padding: 1rem;
+        /* color: black; */
+    }
+
+    .navbar-toggle:hover {
+        color: #fff;
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+
+    .navbar a:hover,
+    .navbar a:active {
+        color: tomato;
+    }
+
+    .icon {
+        font-size: 24px;
+        color: #fff;
+        border-radius: 12px;
+        background-color: tomato;
+        padding: 0.5rem 1rem;
+
+    }
+
+    .icon:hover {
+        color: #000;
+        background-color: rgba(252, 207, 199, 0.658);
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+
+    .navbar-header {
+        font-size: 1.2rem;
+    }
+
+    /* Banner section */
+    .banner {
+        margin: 1rem;
+        min-height: 50vh;
+        padding: 0.5rem;
+        margin: 1rem;
+        border-radius: 10px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .banner-header {
+        font-size: 1.25rem;
+    }
+
+    /* End of banner section */
+
+    /* Activity section  */
+    .activity-section {
+        padding: 0;
+    }
+
+
+    /* Mission setion  */
+    .mission {
+        margin: 1rem auto;
+        padding: 0;
+    }
+
+    .ms-hd {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+
+    /* Start of vission section */
+    .vission {
+        margin: 4rem auto;
+        padding: 0;
+    }
+
+    .hd {
+        padding: 0.5rem;
+        justify-content: center;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .vission-content {
+        display: block;
+        margin: 1rem 1.5rem;
+        padding: 1rem;
+    }
+
+    .vission-content img {
+        width: 90%;
+    }
+
+    .content-text {
+        min-width: 80%;
+        padding: 0.25rem;
+        text-align: center;
+        margin: 1rem auto;
+    }
+
+    /* End of vission section */
+
+
+    /* Mission content */
+    .mission-content {
+        min-width: 90vw;
+        min-height: 40vh;
+    }
+
+    /* End of mission content */
+
+
+    /* About section */
+    .about-section {
+        margin: 1rem;
+    }
+
+    .about-section img {
+        max-width: 90%;
+        /* display: inline-block; */
+    }
+
+    .about-content {
+        display: block;
+    }
+
+    /* End of about section */
+
+
+    /* Contact section */
+    .contact-us {
+        margin: 5rem auto;
+        max-width: 90%;
+    }
+
+    .contact-hd {
+        text-align: center;
+        font-size: 2rem;
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .hd-4 {
+        text-align: center;
+
+    }
+}
