@@ -1,7 +1,5 @@
-
 db.sqlite3
 walktru.md
 .env
-**/migrations
 **/migrations/*
-**/__pycache__/
+**/__pycache__/*
