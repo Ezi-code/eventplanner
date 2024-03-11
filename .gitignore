@@ -1,8 +1,11 @@
-/accounts/__pycache__/*
-/accounts/migrations/*
-/main/__pycache__/*
-/main/migrations/*
+# Ignore pycache
+**/__pycache__/
+
+# Ignore migrations
+**/migrations/
+
+# Ignore .env file
 .env
+
+# Ignore db.sqlite3 file
 db.sqlite3
-.filename
-```
