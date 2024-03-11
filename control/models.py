@@ -10,6 +10,9 @@ from settings import base
 
 class Event(models.Model):
     # from main.models import RSVP
+    class EventState(models.TextChoices):
+        OPEN = ("OPEN", "Open")
+        CLOSED = ("CLOSED", "Closed")
 
     organizer = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, unique=True, blank=False, null=False)
@@ -18,10 +21,11 @@ class Event(models.Model):
     location = models.CharField(max_length=150, null=False, default="")
     image = models.ImageField(upload_to=base.MEDIA_ROOT)
     price_tag = models.FloatField(max_length=float("inf"), default=0)
-    opened = models.BooleanField(default=True)
+    state = models.CharField(
+        max_length=100, choices=EventState.choices, default=EventState.OPEN
+    )
     date = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
-    passed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.title}"
@@ -55,16 +59,5 @@ class EventPlan(models.Model):
 
 
 @receiver(pre_save, sender=EventPlan)
-def set_balance(sender: EventPlan, instance: EventPlan, *args, **kwargs):
+def set_balance(sender, instance: EventPlan, *args, **kwargs):
     instance.balance = instance.expected_cost - instance.expenditure
-
-
-class Enquiry(models.Model):
-    name = models.CharField(max_length=100, unique=True, blank=False, null=False)
-    email = models.EmailField()
-    phone = models.CharField(max_length=15, unique=True, blank=False, null=False)
-    message = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
-
-    def __str__(self) -> str:
-        return self.name

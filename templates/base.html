@@ -16,14 +16,14 @@
     <header>
         <nav class="navbar">
 
-            <a href="{% url 'main:home' %}" style="text-decoration: none; color: tomato;">
+            <a href="{% url 'main:home' %}" style="text-decoration: none; color: tomato; margin-left: 1rem;">
                 <h2 class="navbar-header">Event Planner</h2>
             </a>
 
             <div class="navbar-links">
                 <a href="{% url 'main:all_events'%}">find events</a>
                 {% if user.is_authenticated %}
-                <a href="{% url 'control:create_event' %}">create event</a>
+                <!-- <a href="{% url 'control:create_event' %}">create event</a> -->
                 <a href="{% url 'control:dashboard' %}">Dashboard</a>
                 <a href="{% url 'accounts:logout' %}">logout</a>
                 <a href="#">{{request.user}}</a>
@@ -67,7 +67,7 @@
                 <li><a href="">About Us</a></li>
                 <li><a href="">Online Training Link</a></li>
                 <li><a href="">Youth Serminars</a></li>
-                <li><a href="">Support Us</a></li>
+                <li><a href="{% url 'main:enquiries' %}">Contact Us</a></li>
             </ul>
         </section>
     </footer>

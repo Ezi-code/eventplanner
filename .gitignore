@@ -1,4 +1,7 @@
-**/__pycahce__/
+
 db.sqlite3
 walktru.md
 .env
+**/migrations
+**/migrations/*
+**/__pycache__/

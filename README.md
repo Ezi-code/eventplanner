@@ -1,6 +1,6 @@
 # Setup of Project
 
-1. clone the repo to your local machine `git clone <project url>`
+1. clone the repo to your local machine `git clone https://github.com/Ezi-code/eventplanner.git`
 2. cd into the projects directory `cd eventplanner`
 3. install requirements `pip install -r requirements.txt`
 

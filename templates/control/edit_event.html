@@ -18,15 +18,15 @@ Create Event
 
             <p>
                 <input type="text" name="title" placeholder="Event title" required autocomplete="on"
-                    value="{{event.title}}">
+                    value="{{event.title|safe}}">
             </p>
             <p>
                 <input type="text" name="description" placeholder="Description of event" required autocomplete="on"
-                    value="{{event.description}}">
+                    value="{{event.description|safe}}">
             </p>
             <p>
                 <input type="text" name="location" placeholder="Location of event" required autocomplete="on"
-                    value="{{event.location}}">
+                    value="{{event.location|safe}}">
             </p>
             <p>
                 <input type="number" name="price" placeholder="Price of RSVP" required autocomplete="on"
@@ -34,7 +34,7 @@ Create Event
             </p>
             <p>
                 <img src="{{ event.image.url }}" alt="Event image" width="200" height="200">
-                <input type="file" name="image" accept="image/*">
+                <input type="file" name="image" src="{{event.image.url}}" accept="image/*">
             </p>
             <p>
                 <input type="date" name="date" placeholder="Date of event" required autocomplete="on"
@@ -44,7 +44,7 @@ Create Event
                 <input type="time" name="time" placeholder="time of event" required autocomplete="on"
                     value="{{event.time|time:'h:i'}}">
             </p>
-            <textarea name="details" id="message" cols="30" rows="10" required>{{event.details}}</textarea>
+            <textarea name="details" id="message" cols="30" rows="10" required>{{event.details|safe}}</textarea>
             <br />
             <p>
                 <button type="submit">Save Changes</button>

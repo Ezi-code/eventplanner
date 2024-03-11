@@ -2,8 +2,7 @@ from typing import Any
 from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic.base import View
 from main.models import Event, NewsLetter
-from services.services import save_new_rsvp, news_letter
-from django.core.mail import EmailMessage
+from main.services import save_new_rsvp, news_letter, get_enquriy
 
 
 # Create your views here.
@@ -16,8 +15,8 @@ class EventsList(View):
     model = Event
 
     def get(self, request):
-        events = self.model.objects.filter(opened=True)
-        closed = self.model.objects.filter(passed=True)
+        events = self.model.objects.filter(state="OPEN")
+        closed = self.model.objects.filter(state="CLOSED")
         context = {
             "events": events,
             "closed": closed,
@@ -31,20 +30,10 @@ class EventDetails(View):
         return render(request, "main/event_details.html", {"event": event})
 
 
-class RegisterView(View):
-    def get(self, request):
-        return HttpResponse("Register View")
-
-
 class RsvpView(View):
     def get(self, request, title: str):
-        if request.user.is_authenticated:
-            event = Event.objects.get(title=title)
-            return render(request, "main/rsvp.html", {"event": event})
-        else:
-            return redirect(
-                "accounts:login",
-            )
+        event = Event.objects.get(title=title)
+        return render(request, "main/rsvp.html", {"event": event})
 
     def post(self, request, title: str):
         event = Event.objects.get(title=title)
@@ -63,4 +52,15 @@ class Sendmail(View):
         new_sub = NewsLetter(email=email, user=request.user)
         new_sub.full_clean()
         new_sub.save()
+        return redirect("main:home")
+
+
+class Enquiries(View):
+    def get(self, request):
+        return render(request, "main/enquiries.html")
+
+    def post(self, request):
+        new_enquiry = get_enquriy(request)
+        new_enquiry.full_clean()
+        new_enquiry.save()
         return redirect("main:home")

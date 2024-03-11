@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+Enquiries
+{% endblock title %}
+
+{% block content %}
+
+<article class="contact-us" id="contact">
+    <h2 class="contact-hd">Contact Us</h2>
+    <section class="contact-form">
+        <h4 class="hd-4">Please fill the form below to reach us with your enquiries</h4>
+
+        <form class="form" action="{% url 'main:enquiries' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p>
+                <input type="text" name="name" placeholder="Full Name" required autocomplete="on">
+            </p>
+            <p>
+                <input type="email" name="email" placeholder="Valid Email Address" required autocomplete="on">
+            </p>
+            <p>
+                <input type="tel" name="phone" placeholder="Valid Phone Number" required autocomplete="on">
+            </p>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <br />
+            <p>
+                <button type="submit">Send Enquiry</button>
+            </p>
+        </form>
+    </section>
+</article>
+{% endblock content %}

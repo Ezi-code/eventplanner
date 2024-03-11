@@ -6,23 +6,19 @@ Event Details
 
 {% block content %}
 <article class="about-section" id="about">
-            <section>
-                <h2>{{ event.title }}</h2>
-                <figure>
-                {% if event.image %}
-                    <img src="{{ event.image.url}}" alt="">
-                {% endif %}
-                    <figcaption></figcaption>
-                
-                </figure>
-                <div class="about-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi temporibus expedita vel excepturi alias suscipit totam. Blanditiis eveniet vero laudantium id reprehenderit necessitatibus odio, quae nulla quod eos corporis rem?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem quia impedit alias odit laudantium voluptatum. Quas corporis ut debitis nam consectetur! Alias, perferendis neque perspiciatis accusantium dicta quae omnis illo?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, quasi! Totam atque excepturi ut animi rerum. Eos, nesciunt iusto, ut similique voluptatum quas deleniti nostrum dolorem nobis vero repudiandae praesentium.
-                    Eligendi fuga dolorem et voluptatum perspiciatis libero debitis incidunt molestias ratione, iusto consequuntur adipisci dicta. Nam soluta tenetur a enim, sed quaerat non cumque rerum, tempora modi amet fugiat aliquam?
-                    </p>
-                    <p><a class="attend-btn" href="{% url 'main:rsvp' event.title %}">Attend</a></p>
-                </div>
-            </section>
-        </article>
+    <section>
+        <h2>{{ event.title }}</h2>
+        <figure>
+            {% if event.image %}
+            <img src="{{ event.image.url}}" alt="">
+            {% endif %}
+            <figcaption></figcaption>
+
+        </figure>
+        <div class="about-content">
+            <p>{{ event.details }}</p>
+            <p><a class="attend-btn" href="{% url 'main:rsvp' event.title %}">Attend</a></p>
+        </div>
+    </section>
+</article>
 {% endblock content %}

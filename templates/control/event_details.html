@@ -46,11 +46,12 @@ Details of {{event.title}}
 
         .action-btn a {
             border: 1px solid tomato;
-            padding: 0.3rem;
+            padding: 0.4rem;
             border-radius: 10%;
             color: black;
             text-decoration: none;
             margin: 1rem 1rem;
+            /* height: 5vh; */
         }
 
         .notification a:hover {
@@ -60,7 +61,7 @@ Details of {{event.title}}
         .table {
             width: 100%;
             /* border-collapse: collapse; */
-            border: 1px solid black;
+            border: 1px solid tomato;
             margin-top: 1rem;
             padding: 0.2rem;
         }
@@ -74,8 +75,8 @@ Details of {{event.title}}
     <div class="user-nav">
         <section class="options">
             <a href="{% url 'control:dashboard' %}">My Events</a>
-            <a href="">Budgets</a>
-            <a href="" onclick="hello()">Notifications</a>
+            <a href="{% url 'control:create_event' %}">Create Event</a>
+            <!-- <a href="" onclick="hello()">Notifications</a> -->
         </section>
     </div>
 
@@ -100,7 +101,7 @@ Details of {{event.title}}
         </table>
     </section>
     <div class="action-btn">
-        <a href="{% url 'control:edit_event' event.title %}">Edit</a> <a
+        <a href="{% url 'control:edit_event' event.title %}">edit</a> <a
             href="{% url 'control:delete_event' event.title %}">delete</a>
     </div>
 </main>

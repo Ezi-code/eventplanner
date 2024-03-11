@@ -1,5 +1,5 @@
 from django.contrib import admin
-from control.models import EventPlan, Event, Enquiry
+from control.models import EventPlan, Event
 
 # Register your models here.
-admin.site.register([EventPlan, Event, Enquiry])
+admin.site.register([EventPlan, Event])

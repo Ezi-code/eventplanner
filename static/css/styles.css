@@ -34,6 +34,7 @@ body {
     display: flex;
     align-items: center;
     color: rgb(255, 141, 2);
+    margin-left: 1rem;
 }
 
 .navbar-links a {
@@ -54,7 +55,7 @@ body {
 /* End of navbar section */
 
 
-.event-list-h{
+.event-list-h {
     border-bottom: 3px solid tomato;
     padding-top: 1rem;
     display: inline-block;
@@ -66,7 +67,7 @@ body {
 .banner {
     /* border: 1px solid red; */
     margin: 1rem;
-    min-height: 100vh;
+    min-height: 80vh;
     /* width: 100%; */
     padding: 1rem;
     margin: 2.5rem;
@@ -169,7 +170,7 @@ body {
     margin: 2rem auto;
 }
 
-.attend-btn{
+.attend-btn {
     background-color: tomato;
     width: 100%;
     text-decoration: none;
@@ -185,12 +186,13 @@ body {
 .mission {
     display: flex;
     flex-wrap: wrap;
-/*    justify-content: space-evenly;*/
+    /*    justify-content: space-evenly;*/
 }
+
 .mission-content {
     border-radius: 5%;
     padding: 1rem;
-/*    margin: auto;*/
+    /*    margin: auto;*/
     display: inline-block;
     min-height: 32vh;
     width: 29vw;
@@ -216,11 +218,12 @@ body {
 .mission-content img {
     max-width: 60vw;
     max-height: 40vh;
-/*    border-radius: 50%;*/
+    /*    border-radius: 50%;*/
     align-content: center;
     margin: 1rem auto;
 }
-.mission-content p a{
+
+.mission-content p a {
     text-decoration: none;
     color: black;
 }
@@ -368,6 +371,8 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: rgb(0, 0, 0);
+    margin: 0;
+    height: 70vh;
 
 }
 
@@ -402,7 +407,9 @@ body {
     width: 100%;
     height: 5vh;
     border-radius: 1rem;
-    border: 1.25px solid tomato;
+    /* border: 1px solid tomato; */
+    padding: 1rem;
+    /* margin-left: 1rem; */
 }
 
 .newsletter form button {
@@ -551,7 +558,8 @@ body {
         width: 80vw;
         align-content: center;
     }
-     .mission-content img {
+
+    .mission-content img {
         min-height: 20vh;
         max-width: 40vw;
     }
@@ -768,5 +776,9 @@ body {
     .hd-4 {
         text-align: center;
 
+    }
+
+    .footer {
+        height: 60vh auto;
     }
 }

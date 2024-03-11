@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from settings import base
 from control.models import Event
 
 
@@ -22,3 +21,14 @@ class NewsLetter(models.Model):
 
     def __str__(self):
         return self.user + " - " + self.email
+
+
+class Enquiry(models.Model):
+    name = models.CharField(max_length=100, null=False)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15, null=False)
+    message = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
