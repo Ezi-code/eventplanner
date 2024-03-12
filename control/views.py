@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from control.models import EventPlan, Event
 from control.services import save_new_event, update_event
-from main.models import Attendants
+from main.models import Attendants, Enquiry
 from .contenxt_processor import get_notification
 
 
@@ -66,3 +66,11 @@ class DashboardView(View):
     def get(self, request):
         events = Event.objects.filter(organizer=request.user).all()
         return render(request, "control/dashboard.html", {"events": events})
+
+
+class Notification(View):
+    def get(self, request):
+        count = Enquiry.objects.filter(read=False).count()
+        messages = Enquiry.objects.filter(read=False).all()[::-1]
+        cntx = {"count": count, "messages": messages}
+        return render(request, "control/notifications.html", cntx)

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Dashboard
+Notifications
 {% endblock title %}
 
 {% block content %}
@@ -59,20 +59,36 @@ Dashboard
     }
 </style>
 
+
 <main>
     <div class="user-nav">
         <section class="options">
             <a href="{% url 'control:dashboard' %}">My Events</a>
             <a href="{% url 'control:create_event' %}">Create Event</a>
-            <a href="{% url 'control:notifications' %}">Notifications</a>
+            <!-- <a href="" onclick="hello()">Notifications</a> -->
         </section>
     </div>
-    {% for event in events %}
+    {% for message in messages %}
     <section class="notification">
-        <p><b>{{event.title}} | {{event.date}} | {{ event.time }}</b></p>
-        <a href="{% url 'control:event_details' event.title %}">Detail</a>
+
+
+        <p><b>{{message.name}}</b></p>
+        <form action=""></form>
+        <a id="openModalBtn" href="#">Read</a>
+
+        <div id="notificationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>{{message.name}}</h3>
+                <br>
+                <p>{{message.message}}</p>
+                <!-- <button id="readBtn">Read</button> -->
+            </div>
+        </div>
+
     </section>
     {% endfor %}
+
 
 
 

@@ -5,6 +5,7 @@ from control.views import (
     DashboardView,
     EditEvent,
     DeleteEvent,
+    Notification,
 )
 
 app_name = "control"
@@ -15,4 +16,5 @@ urlpatterns = [
     path("edit_event/<str:title>", EditEvent.as_view(), name="edit_event"),
     path("delete_event/<str:title>", DeleteEvent.as_view(), name="delete_event"),
     path("dashboard", DashboardView.as_view(), name="dashboard"),
+    path("notifications", Notification.as_view(), name="notifications"),
 ]

@@ -29,6 +29,7 @@ class Enquiry(models.Model):
     phone = models.CharField(max_length=15, null=False)
     message = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
+    read = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.name}"

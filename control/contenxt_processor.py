@@ -1,7 +1,7 @@
-from main.models import Attendants
-from control.models import Event
-from django.http import request
+from main.models import Enquiry
 
 
 def get_notification(request):
-    return print(request.user)
+    enquiries = Enquiry.objects.filter(read=False).count()
+    messages = Enquiry.objects.filter(read=False).all()
+    return {"enquiries": enquiries, "messages": messages}
