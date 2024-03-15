@@ -17,8 +17,9 @@ RSVP
     <div class="mission">
         {% for event in events %}
         <section class="mission-content">
-            <h2>{{ event.title }}</h2>
-            {% if event.image %}<img src="{{event.image.url}}" alt="" width="300" height="200">{% endif %}
+            <h3>{{ event.title }}</h3>
+            <p><i>{{event.date}} | {{event.time}} | {{event.location}}</i></p> <br>
+            {% if event.image %}<img src="{{event.image.url}}">{% endif %}
             <div>
                 <p><a href="{% url 'main:event-details' event.title %}">{{ event.description }}</a>
                 </p>

@@ -17,7 +17,7 @@ body {
 .navbar {
     display: flex;
     position: sticky;
-    height: 13vh;
+    height: 10vh;
     width: 100%;
     z-index: 0;
     margin-bottom: 1rem;
@@ -41,6 +41,7 @@ body {
     text-decoration: none;
     color: #000000d4;
     padding: 1rem;
+    /* background-color: green; */
 }
 
 .navbar-toggle {
@@ -54,6 +55,92 @@ body {
 
 /* End of navbar section */
 
+/* control nav */
+
+.user-nav {
+    background-color: rgba(214, 213, 208, 0.486);
+    display: flex;
+    flex-wrap: wrap;
+    height: 3em;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1rem; */
+    color: white;
+    border-bottom: 3px solid rgba(171, 177, 163, 0.219);
+    /* font-size: 1.5rem; */
+}
+
+.user-nav a {
+    color: black;
+    text-decoration: none;
+    /* padding-top: 1rem; */
+    margin: 0.4rem;
+    /* position: static; */
+}
+
+.user-nav a:hover {
+    color: rgb(167, 123, 13);
+    /* border-radius: 10px; */
+}
+
+.notification {
+    border: 1px solid rgba(207, 187, 187, 0.651);
+    padding: 1rem;
+    margin: 2rem 1rem;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+
+}
+
+.eventdetails {
+    border: 1px solid rgba(207, 187, 187, 0.651);
+    padding: 0.75rem;
+    margin: 2rem 1rem;
+    height: auto;
+    /* display: flex; */
+    justify-content: space-between;
+    border-radius: 0.5rem;
+
+}
+
+.edit-btn {
+    background-color: rgb(150, 185, 185);
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.del-btn {
+    background-color: rgb(130, 32, 32);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.notification a {
+    border: 1px solid tomato;
+    padding: 0.3rem 0.3rem;
+    border-radius: 10%;
+    color: black;
+    text-decoration: none;
+    height: 5vh;
+    margin: 0 0 0 1rem;
+}
+
+.notification button:hover {
+    color: rgb(167, 123, 13);
+}
+
+.table {
+    justify-content: space-evenly;
+}
+
+/* end of control nav */
 
 .event-list-h {
     border-bottom: 3px solid tomato;
@@ -99,7 +186,7 @@ body {
 
 .activity-section {
     padding: 1rem;
-    margin: 10rem 1rem;
+    margin: 2rem 1rem;
 }
 
 .activity-section h2 {
@@ -195,7 +282,7 @@ body {
     /*    margin: auto;*/
     display: inline-block;
     min-height: 32vh;
-    width: 29vw;
+    max-width: 29vw;
     margin: 1rem;
     background-color: rgba(217, 208, 196, 0.173);
     box-shadow: 2px 2px 2px 2px rgba(255, 222, 173, 0.938);
@@ -323,7 +410,7 @@ body {
 }
 
 .form textarea {
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 0.25rem auto;
     max-width: 100%;
     min-width: 100%;
@@ -447,6 +534,7 @@ body {
         display: inherit;
         text-align: right;
         padding: 1rem;
+        position: static;
         /* color: black; */
     }
 
@@ -554,8 +642,8 @@ body {
 
     /* Mission content */
     .mission-content {
-        height: 55vh;
-        width: 80vw;
+        min-height: 55vh;
+        max-width: 80vw;
         align-content: center;
     }
 
@@ -686,6 +774,7 @@ body {
     /* Activity section  */
     .activity-section {
         padding: 0;
+        margin: 1rem;
     }
 
 

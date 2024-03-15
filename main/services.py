@@ -40,7 +40,7 @@ def send_email(event, username, email):
     from_email = settings.EMAIL_HOST_USER
     appname = "EventPlanner"
     subject = f"You're in! Get ready for {event.title} with EventPlanner!"
-    message = f"""Congratulations {username}! You're officially registered for {event.title} happening on {event.date} at {event.time} We're thrilled you'll be joining us for what promises to be an amazing event.
+    message = f"""Congratulations {username}! You're officially registered for {event.title} happening on {event.date} {event.time} at {event.location}. We're thrilled you'll be joining us for what promises to be an amazing event.
 
 To enhance your experience, we recommend using the {appname} app (if you haven't already) for:
 
@@ -81,35 +81,6 @@ def save_new_rsvp(data, event):
     except Exception as e:
         print("error: ", e)
         return False
-
-
-# def save_new_event(data, file_data, user):
-#     organizer = user
-#     title = data.get("title")
-#     description = data.get("description")
-#     localtion = data.get("location")
-#     image = handle_uploaded_file(file_data["image"])
-#     date = data.get("date")
-#     time = data.get("time")
-#     details = data.get("details")
-#     price_tag = data.get("price")
-#     try:
-#         new_event = Event(
-#             organizer=organizer,
-#             title=title,
-#             description=description,
-#             location=localtion,
-#             image=image,
-#             date=date,
-#             time=time,
-#             details=details,
-#             price_tag=price_tag,
-#         )
-#         # new_event.full_clean()
-#         # new_event.save()
-#         return new_event
-#     except Exception as e:
-#         print("")
 
 
 def get_enquriy(request):

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from control.models import EventPlan, Event
+from control.models import Event, Budget
 from control.services import save_new_event, update_event
 from main.models import Attendants, Enquiry
 from .contenxt_processor import get_notification
@@ -13,7 +13,16 @@ class EventDetails(View):
     def get(self, request, title):
         event = self.model.objects.get(title=title)
         attendants = Attendants.objects.filter(event=event).count()
-        context = {"event": event, "attendants": attendants}
+        budget = Budget.objects.get(event=event).total_cost
+        print(budget)
+        # tickets = Attendants.objects.count(tickets)
+        # print(tickets)
+        context = {
+            "event": event,
+            "attendants": attendants,
+            "budget": budget,
+            # "ticket_amount": ticket_amoaunt,
+        }
         get_notification(request)
         return render(request, "control/event_details.html", context)
 
@@ -74,3 +83,14 @@ class Notification(View):
         messages = Enquiry.objects.filter(read=False).all()[::-1]
         cntx = {"count": count, "messages": messages}
         return render(request, "control/notifications.html", cntx)
+
+
+class GuestList(View):
+    def get(self, request, event):
+        guests = Attendants.objects.filter(event=event).all()
+        event = Event.objects.get(id=event)
+        ticket_amoaunt = []
+        print(ticket_amoaunt)
+        ctx = {"event": event, "guests": guests}
+
+        return render(request, "control/guest_list.html", ctx)

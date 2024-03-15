@@ -31,20 +31,6 @@ class Event(models.Model):
         return f"{self.title}"
 
 
-class TaskManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(is_completed=False)
-
-
-class Task(models.Model):
-    title = models.CharField(max_length=100, unique=True, blank=False, null=False)
-    desccription = models.TextField()
-    is_completed = models.BooleanField(default=False)
-    created_at = models.DateTimeField(default=timezone.now)
-
-    objects = TaskManager()
-
-
 class EventPlan(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     expected_cost = models.FloatField(max_length=float("inf"))
@@ -61,3 +47,30 @@ class EventPlan(models.Model):
 @receiver(pre_save, sender=EventPlan)
 def set_balance(sender, instance: EventPlan, *args, **kwargs):
     instance.balance = instance.expected_cost - instance.expenditure
+
+
+class Budget(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, db_index=True)
+    cost_of_venue = models.FloatField(max_length=float("inf"), default=0.0)
+    organizational_cost = models.FloatField(max_length=float("inf"), default=0.0)
+    expected_guests = models.FloatField(max_length=float("inf"), default=0.0)
+    cost_of_security = models.FloatField(max_length=float("inf"), default=0.0)
+    refreshment_cost = models.FloatField(max_length=float("inf"), default=0.0)
+    transportation_cost = models.FloatField(max_length=float("inf"), default=0.0)
+    misc_cost = models.FloatField(max_length=float("inf"), default=0.0)
+    total_cost = models.FloatField(max_length=float("inf"), default=0.0)
+
+    def __str__(self) -> str:
+        return f"{self.event} ==> {self.total_cost}"
+
+
+@receiver(pre_save, sender=Budget)
+def set_totla_cost(sender, instance: Budget, *args, **kwargs):
+    instance.total_cost = (
+        instance.cost_of_venue
+        + instance.cost_of_security
+        + instance.refreshment_cost
+        + instance.transportation_cost
+        + instance.misc_cost
+        + instance.organizational_cost
+    )

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Guest List
+{% endblock title %}
+
+{% block content %}
+<section class="main">
+    <div class="user-nav">
+        <section class="options">
+            <a href="{% url 'control:dashboard' %}">My Events</a>
+            <a href="{% url 'control:create_event' %}">Create Event</a>
+            <a href="">Guest list</a>
+            <!-- <a href="" onclick="hello()">Notifications</a> -->
+        </section>
+    </div>
+
+    <section class="eventdetails">
+        <center>
+            <h4>
+                Guest list for <i>{{event.title}}</i>
+            </h4>
+        </center>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Tickets</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for guest in guests %}
+                <tr>
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.tickets}}</td>
+                    <td>{{guest.total_cost}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table> <br>
+        <a class="edit-btn" href="{% url 'control:edit_event' event.title %}">edit</a>
+        <a class="del-btn" href="{% url 'control:delete_event' event.title %}">delete</a>
+    </section>
+
+    {% endblock content %}
