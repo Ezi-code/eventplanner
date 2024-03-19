@@ -2,8 +2,9 @@ import os
 from django.utils.crypto import get_random_string
 from django.core.exceptions import ValidationError
 from django.utils.text import slugify
-from control.models import Event
+from control.models import Event, Budget
 from settings import base
+from main.models import Attendants
 
 
 def update_event(event, request):
@@ -73,3 +74,34 @@ def save_new_event(data, file_data, user):
         return new_event
     except Exception as e:
         print("")
+
+
+def get_total_cost(event):
+    total = 0
+    tickets = Attendants.objects.filter(event=event).all()
+    for ticket in tickets:
+        total = total + ticket.total_cost
+    return total
+
+
+def create_budget(request, event):
+    ven_cost = request.POST.get("venue")
+    org_cost = request.POST.get("org-cost")
+    guest_num = request.POST.get("guest-num")
+    security = request.POST.get("security")
+    meal = request.POST.get("meals")
+    transport = request.POST.get("transport")
+    misc = request.POST.get("misc")
+
+    new_budget = Budget(
+        event=event,
+        cost_of_venue=ven_cost,
+        organizational_cost=org_cost,
+        expected_guests=guest_num,
+        cost_of_security=security,
+        refreshment_cost=meal,
+        transportation_cost=transport,
+        misc_cost=misc,
+    )
+
+    return new_budget

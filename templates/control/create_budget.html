@@ -3,41 +3,40 @@
 {% block title %}
 Create Budget
 {% endblock title %}
-<article class="contact-us" id="contact">
-    <h2 class="contact-hd">Create Event</h2>
-    <section class="contac-form">
-        <h4 class="hd-4">Please fill the form below to create an event</h4>
 
-        <form class="form" action="{% url 'control:create_event' %}" method="post" enctype="multipart/form-data">
+{% block content %}
+
+<article class="contact-us" id="contact">
+    <h2 class="contact-hd">Create Budget</h2>
+    <section class="contac-form">
+        <form class="form" action="{% url 'control:create_budget' event %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <p>
-                <input type="text" name="title" placeholder="Event title" required autocomplete="on">
+                <input type="number" name="venue" placeholder="Cost of venue" autocomplete="on">
             </p>
             <p>
-                <input type="text" name="description" placeholder="Description of event" required autocomplete="on">
+                <input type="number" name="org-cost" placeholder="Organizational cost" autocomplete="on">
             </p>
             <p>
-                <input type="text" name="location" placeholder="Location of event" required autocomplete="on">
+                <input type="number" name="guest-num" placeholder="Number of expected guest" autocomplete="on">
             </p>
             <p>
-                <input type="number" name="price" placeholder="Price of RSVP" required autocomplete="on">
+                <input type="number" name="security" placeholder="Cost of security" autocomplete="on">
             </p>
             <p>
-                <input type="file" name="image" accept="image/*">
+                <input type="number" name="meals" placeholder="Cost os refreshemt" autocomplete="on">
             </p>
             <p>
-                <input type="date" name="date" placeholder="Date of event" required autocomplete="on">
+                <input type="number" name="transport" placeholder="Transport cost">
             </p>
             <p>
-                <input type="time" name="time" placeholder="time of event" required autocomplete="on">
+                <input type="number" name="misc" placeholder="Misc cost" autocomplete="on">
             </p>
-            <textarea name="details" id="message" cols="30" rows="10"></textarea>
-            <br />
             <p>
-                <button type="submit">Create Event</button>
+                <button type="submit">Create Budget</button>
             </p>
         </form>
     </section>
 </article>
-{% block content %}
+{% endblock content %}

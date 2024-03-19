@@ -17,7 +17,9 @@ Event Details
         </figure>
         <div class="about-content">
             <p>{{ event.details }}</p>
-            <p><a class="attend-btn" href="{% url 'main:rsvp' event.title %}">Attend</a></p>
+            <p><a class="attend-btn" href="{% url 'main:rsvp' event.title %}">Attend</a>
+            </p>
+
         </div>
     </section>
 </article>
