@@ -44,30 +44,25 @@ Details of {{event.title}}
             </tr>
 
         </table> <br>
+
+        <a class="edit-btn" href="{% url 'control:edit_event' event.title %}">edit</a>
+        <a class="del-btn" href="{% url 'control:delete_event' event.title %}">delete</a>
+        <br> <br>
         <center>
             <h3>Budget</h3>
         </center>
         <table class="table">
             <tr>
                 <td><b>Total Estimated cost</b></td>
-                <td>GHS {{budget}}</td>
+                <td>GHS {{budget.total_cost}}</td>
             </tr>
             <tr>
                 <td><b>Amount of ticket sales</b></td>
                 <td>GHS {{total}}</td>
             </tr>
-            <!-- <tr>
-                <td><b>Location</b></td>
-                <td>{{event.location}}</td>
-            </tr>
-            <tr>
-                <td><b>Attendees</b></td>
-                <td>{{attendants}}</td>
-            </tr> -->
-
         </table> <br>
-        <a class="edit-btn" href="{% url 'control:edit_event' event.title %}">edit</a>
-        <a class="del-btn" href="{% url 'control:delete_event' event.title %}">delete</a>
+        <a class="edit-btn" href="{% url 'control:edit_budget' budget.id %}">edit</a>
+
     </section>
 
     {% endblock content %}

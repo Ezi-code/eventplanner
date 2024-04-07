@@ -8,6 +8,7 @@ from control.views import (
     Notification,
     GuestList,
     CreateBudget,
+    EditBudgetView,
 )
 
 app_name = "control"
@@ -20,5 +21,6 @@ urlpatterns = [
     path("dashboard", DashboardView.as_view(), name="dashboard"),
     path("notifications", Notification.as_view(), name="notifications"),
     path("guest-list/<str:event>", GuestList.as_view(), name="guest-list"),
-    path("create_budget<str:event>", CreateBudget.as_view(), name="create_budget"),
+    path("create_budget/<str:event>", CreateBudget.as_view(), name="create_budget"),
+    path("edit_budget/<int:id>", EditBudgetView.as_view(), name="edit_budget"),
 ]

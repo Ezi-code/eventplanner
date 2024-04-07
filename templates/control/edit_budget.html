@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Edit Budget
+{% endblock title %}
+
+{% block content %}
+<article class="contact-us" id="contact">
+    <h2 class="contact-hd">Edit budget of: {{budget.event }}</h2>
+    <section class="contac-form">
+        <h4 class="hd-4">Please fill the form below to edit event's budget</h4>
+
+        <form class="form" action="{% url 'control:edit_budget' budget.id %}" method="post">
+            {% csrf_token %}
+
+            <p>
+                <label for="event">Event</label>
+                <input value="{{budget.event}}" type="text" name="event" disabled autocomplete="on">
+            </p>
+            <p>
+                <label for="venue">Cost of venue</label>
+                <input value="{{budget.cost_of_venue}}" type="number" name="venue" placeholder="Cost of venue" autocomplete="on">
+            </p>
+            <p>
+                <label for="org-cost">Organizational cost</label>
+                <input value="{{budget.organizational_cost}}" type="number" name="org-cost" placeholder="Organizational cost" autocomplete="on">
+            </p>
+            <p>
+                <label for="guest-num">Expected number of guests</label>
+                <input value="{{budget.expected_guests}}" type="number" name="guest-num" placeholder="Number of expected guest" autocomplete="on">
+            </p>
+            <p>
+                <label for="security">Cost of security</label>
+                <input value="{{budget.cost_of_security}}" type="number" name="security" placeholder="Cost of security" autocomplete="on">
+            </p>
+            <p>
+                <label for="meals">Refreshment cost</label>
+                <input value="{{budget.refreshment_cost}}" type="number" name="meals" placeholder="Cost os refreshemt" autocomplete="on">
+            </p>
+            <p>
+                <label for="transport">Tranportation cost</label>
+                <input value="{{budget.transportation_cost}}" type="number" name="transport" placeholder="Transport cost">
+            </p>
+            <p>
+                <label for="misc">Misc costs</label>
+                <input value="{{budget.misc_cost}}" type="number" name="misc" placeholder="Misc cost" autocomplete="on">
+            </p>
+            <p>
+                <button type="submit">Save Changes</button>
+            </p>
+        </form>
+    </section>
+</article>
+{% endblock content %}

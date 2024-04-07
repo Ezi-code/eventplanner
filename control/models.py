@@ -53,7 +53,7 @@ class Budget(models.Model):
     event = models.OneToOneField(Event, on_delete=models.PROTECT, db_index=True)
     cost_of_venue = models.FloatField(max_length=float("inf"), default=0.0)
     organizational_cost = models.FloatField(max_length=float("inf"), default=0.0)
-    expected_guests = models.FloatField(max_length=float("inf"), default=0.0)
+    expected_guests = models.IntegerField(default=0)
     cost_of_security = models.FloatField(max_length=float("inf"), default=0.0)
     refreshment_cost = models.FloatField(max_length=float("inf"), default=0.0)
     transportation_cost = models.FloatField(max_length=float("inf"), default=0.0)

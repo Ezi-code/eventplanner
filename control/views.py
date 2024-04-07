@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from control.models import Event, Budget
-from control.services import get_total_cost, save_new_event, update_event, create_budget
+from control.services import (
+    get_total_cost,
+    save_new_event,
+    update_event,
+    create_budget,
+    update_budget,
+)
 from main.models import Attendants, Enquiry
 from .contenxt_processor import get_notification
 
@@ -14,7 +20,7 @@ class EventDetails(View):
         event = self.model.objects.get(title=title)
         attendants = Attendants.objects.filter(event=event).count()
         total = get_total_cost(event)
-        budget = Budget.objects.get(event=event).total_cost
+        budget = Budget.objects.get(event=event)
 
         context = {
             "event": event,
@@ -106,3 +112,22 @@ class CreateBudget(View):
         new_budget.full_clean()
         new_budget.save()
         return redirect("main:all_events")
+
+
+class EditBudgetView(View):
+    model = Budget
+
+    def get(self, req, id):
+        budget = self.model.objects.get(id=id)
+        event = budget.event
+        print(budget)
+        ctx = {"budget": budget}
+        return render(req, "control/edit_budget.html", ctx)
+
+    def post(self, req, id):
+        budget = Budget.objects.get(id=id)
+        event = budget.event
+        update_budget(req, budget)
+        budget.clean_fields()
+        budget.save()
+        return redirect("control:event_details", event)

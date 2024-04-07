@@ -105,3 +105,14 @@ def create_budget(request, event):
     )
 
     return new_budget
+
+
+def update_budget(request, budget):
+    budget.venue_cost = request.POST.get("venue")
+    budget.organizational_cost = request.POST.get("org-cost")
+    budget.expected_guests = request.POST.get("guest-num")
+    budget.cost_of_security = request.POST.get("security")
+    budget.refreshment_cost = request.POST.get("meals")
+    budget.transportation_cost = request.POST.get("transport")
+    budget.misc_cost = request.POST.get("misc")
+    return budget
