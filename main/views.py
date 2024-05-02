@@ -1,8 +1,9 @@
 from typing import Any
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from main.models import Event, NewsLetter
 from main.services import save_new_rsvp, news_letter, get_enquriy
+from django.contrib import messages
 
 
 # Create your views here.
@@ -39,6 +40,7 @@ class RsvpView(View):
         event = Event.objects.get(title=title)
         new_rsvp = save_new_rsvp(request.POST, event)
         if new_rsvp:
+            messages.success(request, "RSVP Successful")
             return redirect("main:home")
         else:
             return render(request, "main/rsvp.html", {"event": event})
@@ -63,4 +65,5 @@ class Enquiries(View):
         new_enquiry = get_enquriy(request)
         new_enquiry.full_clean()
         new_enquiry.save()
+        messages.success(request, "Enquiry Sent")
         return redirect("main:home")

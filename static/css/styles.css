@@ -20,7 +20,7 @@ body {
     height: 10vh;
     width: 100%;
     z-index: 0;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     background-color: #fff;
     justify-content: space-between;
     align-items: center;

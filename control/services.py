@@ -116,3 +116,11 @@ def update_budget(request, budget):
     budget.transportation_cost = request.POST.get("transport")
     budget.misc_cost = request.POST.get("misc")
     return budget
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+
+class LoginMixin(LoginRequiredMixin):
+    def get_login_url(self) :
+        return reverse_lazy('accounts:login')

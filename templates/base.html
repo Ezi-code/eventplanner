@@ -11,10 +11,55 @@
         {% block title %}
         {% endblock %}
     </title>
+    <style>
+        .messages {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .messages li {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            margin: 1rem;
+            list-style: none;
+            border-left: 5px solid tomato;
+        }
+    </style>
 </head>
 
 <body>
     <header>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li id="message-{{ message.id }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // Array to hold message elements
+                var messages = document.querySelectorAll('.messages li');
+
+                // Function to hide a message after 3 seconds
+                function hideMessage(messageElement) {
+                    setTimeout(function() {
+                        messageElement.style.display = 'none';
+                    }, 3000); // 3000 milliseconds = 3 seconds
+                }
+
+                // Apply the hide function to each message
+                messages.forEach(function(messageElement) {
+                    hideMessage(messageElement);
+                });
+            });
+        </script>
+        {% endif %}
         <nav class="navbar">
 
             <a href="{% url 'main:home' %}" style="text-decoration: none; color: tomato; margin-left: 1rem;">

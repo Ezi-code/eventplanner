@@ -1,15 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from control.models import Event, Budget
-from control.services import (
-    get_total_cost,
-    save_new_event,
-    update_event,
-    create_budget,
-    update_budget,
-)
+from control import services as srv
 from main.models import Attendants, Enquiry
 from .contenxt_processor import get_notification
+from django.contrib import messages
+from control.services import LoginMixin
 
 
 # Create your views here.
@@ -19,7 +15,7 @@ class EventDetails(View):
     def get(self, request, title):
         event = self.model.objects.get(title=title)
         attendants = Attendants.objects.filter(event=event).count()
-        total = get_total_cost(event)
+        total = srv.get_total_cost(event)
         budget = Budget.objects.get(event=event)
 
         context = {
@@ -32,24 +28,20 @@ class EventDetails(View):
         return render(request, "control/event_details.html", context)
 
 
-class CreateEvent(View):
+class CreateEvent(LoginMixin, View):
     def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, "control/event_form.html")
-        else:
-            return redirect("accounts:login")
+        return render(request, "control/event_form.html")
 
     def post(self, request):
-        if request.user.is_authenticated:
-            try:
-                new_event = save_new_event(request.POST, request.FILES, request.user)
-                new_event.full_clean()
-                new_event.save()
-                return redirect("control:create_budget", new_event)
-            except Exception as e:
-                return render(request, "control/event_form.html", {"errors": e})
-        else:
-            return redirect("accounts:login")
+        try:
+            new_event = srv.save_new_event(request.POST, request.FILES, request.user)
+            new_event.full_clean()
+            new_event.save()
+            messages.success(request, "Event Created Successfully")
+            return redirect("control:create_budget", new_event)
+        except Exception as e:
+            messages.error(request, "An error occured: ", e)
+            return render(request, "control/event_form.html")
 
 
 class DeleteEvent(View):
@@ -70,19 +62,20 @@ class EditEvent(View):
 
     def post(self, request, title):
         event = self.model.objects.get(title=title)
-        update_event(event, request)
+        srv.update_event(event, request)
         event.full_clean()
         event.save()
+        messages.success(request, "Event Updated Successfully")
         return redirect("control:dashboard")
 
 
-class DashboardView(View):
+class DashboardView(LoginMixin, View):
     def get(self, request):
         events = Event.objects.filter(organizer=request.user).all()
         return render(request, "control/dashboard.html", {"events": events})
 
 
-class Notification(View):
+class Notification(LoginMixin, View):
     def get(self, request):
         count = Enquiry.objects.filter(read=False).count()
         messages = Enquiry.objects.filter(read=False).all()[::-1]
@@ -90,7 +83,7 @@ class Notification(View):
         return render(request, "control/notifications.html", cntx)
 
 
-class GuestList(View):
+class GuestList(LoginMixin, View):
     def get(self, request, event):
         guests = Attendants.objects.filter(event=event).all()
         event = Event.objects.get(id=event)
@@ -101,25 +94,25 @@ class GuestList(View):
         return render(request, "control/guest_list.html", ctx)
 
 
-class CreateBudget(View):
+class CreateBudget(LoginMixin, View):
     def get(self, request, event):
         event = Event.objects.get(title=event)
         return render(request, "control/create_budget.html", {"event": event})
 
     def post(self, request, event):
         event = Event.objects.get(title=event)
-        new_budget = create_budget(request, event)
+        new_budget = srv.create_budget(request, event)
         new_budget.full_clean()
         new_budget.save()
+        messages.success(request, "Budget Created Successfully")
         return redirect("main:all_events")
 
 
-class EditBudgetView(View):
+class EditBudgetView(LoginMixin, View):
     model = Budget
 
     def get(self, req, id):
         budget = self.model.objects.get(id=id)
-        event = budget.event
         print(budget)
         ctx = {"budget": budget}
         return render(req, "control/edit_budget.html", ctx)
@@ -127,7 +120,8 @@ class EditBudgetView(View):
     def post(self, req, id):
         budget = Budget.objects.get(id=id)
         event = budget.event
-        update_budget(req, budget)
+        srv.update_budget(req, budget)
         budget.clean_fields()
         budget.save()
+        messages.success(req, "Budget Updated Successfully")
         return redirect("control:event_details", event)
