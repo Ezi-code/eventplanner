@@ -7,9 +7,9 @@ from django.db.models.signals import pre_save
 
 class Attendants(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, unique=True, blank=False, null=False)
+    name = models.CharField(max_length=100, blank=False, null=False)
     email = models.EmailField()
-    phone = models.CharField(max_length=15, unique=True, blank=False, null=False)
+    phone = models.CharField(max_length=15, blank=False, null=False)
     tickets = models.IntegerField(default=0)
     reserved_at = models.DateTimeField(default=timezone.now)
     total_cost = models.FloatField(max_length=float("inf"), default=0)

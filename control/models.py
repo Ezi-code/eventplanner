@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.dispatch import receiver
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.contrib.auth.models import User
 from settings import base
 
@@ -26,9 +26,18 @@ class Event(models.Model):
     )
     date = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
+    expiry_date = models.DateField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.title}"
+
+
+@receiver(post_save, sender=Event)
+def check_expiry_date(sender, instance: Event, *args, **kwargs):
+    if instance.expiry_date < timezone.now().date():
+        instance.state = Event.EventState.CLOSED
+        instance.save()
 
 
 class EventPlan(models.Model):
