@@ -14,7 +14,7 @@ Login
         <form class="form" action="{% url 'accounts:login' %}" method="post">
             {% csrf_token %}
             <p>
-                <input type="text" name="username" id="fullname" placeholder="User Name" required autocomplete="on">
+                <input type="email" name="email" id="fullname" placeholder="Email" required autocomplete="on">
             </p>
             <p>
                 <input type="password" name="password" id="email" placeholder="Password" required autocomplete="on">

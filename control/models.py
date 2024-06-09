@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save
-from django.contrib.auth.models import User
+from accounts.models import User
 from settings import base
 
 # Create your models here.
@@ -19,7 +19,7 @@ class Event(models.Model):
     description = models.CharField(max_length=100, blank=False, null=False)
     details = models.TextField(blank=False)
     location = models.CharField(max_length=150, null=False, default="")
-    image = models.ImageField(upload_to=base.MEDIA_ROOT)
+    image = models.ImageField(upload_to='media/events')
     price_tag = models.FloatField(max_length=float("inf"), default=0)
     state = models.CharField(
         max_length=100, choices=EventState.choices, default=EventState.OPEN

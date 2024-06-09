@@ -1,11 +1,10 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.models import User
+from accounts.models import User
 from django.contrib import messages
 
 
-# Create your views here.
 class RegisterView(View):
     def get(self, request):
         return render(request, "accounts/register.html")
@@ -29,13 +28,15 @@ class RegisterView(View):
 
 
 class LoginView(View):
+
     def get(self, request):
         return render(request, "accounts/login.html")
 
     def post(self, request):
-        username = request.POST.get("username")
+        username = request.POST.get("email")
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
             messages.success(request, "Loged in successful")
