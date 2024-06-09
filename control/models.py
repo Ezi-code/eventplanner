@@ -17,7 +17,6 @@ class Event(models.Model):
     organizer = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, unique=True, blank=False, null=False)
     description = models.CharField(max_length=100, blank=False, null=False)
-    details = models.TextField(blank=False)
     location = models.CharField(max_length=150, null=False, default="")
     image = models.ImageField(upload_to='media/events')
     price_tag = models.FloatField(max_length=float("inf"), default=0)
@@ -26,18 +25,12 @@ class Event(models.Model):
     )
     date = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
+    details = models.TextField(blank=False)
     created_at = models.DateTimeField(default=timezone.now)
     expiry_date = models.DateField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.title}"
-
-
-@receiver(post_save, sender=Event)
-def check_expiry_date(sender, instance: Event, *args, **kwargs):
-    if instance.expiry_date < timezone.now().date():
-        instance.state = Event.EventState.CLOSED
-        instance.save()
 
 
 class EventPlan(models.Model):

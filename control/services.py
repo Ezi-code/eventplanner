@@ -69,11 +69,9 @@ def save_new_event(data, file_data, user):
             details=details,
             price_tag=price_tag,
         )
-        # new_event.full_clean()
-        # new_event.save()
         return new_event
     except Exception as e:
-        print("")
+       return e
 
 
 def get_total_cost(event):

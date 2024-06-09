@@ -15,7 +15,9 @@ Create Event
         <form class="form" action="{% url 'control:create_event' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <p>
+             {{ form.as_p|safe }}
+
+            {% comment %} <p>
                 <input type="text" name="title" placeholder="Event title" required autocomplete="on">
             </p>
             <p>
@@ -37,7 +39,7 @@ Create Event
                 <input type="time" name="time" placeholder="time of event" required autocomplete="on">
             </p>
             <textarea name="details" id="message" cols="30" rows="10"></textarea>
-            <br />
+            <br /> {% endcomment %}
             <p>
                 <button type="submit">Create Event</button>
             </p>

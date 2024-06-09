@@ -6,6 +6,7 @@ from main.models import Attendants, Enquiry
 from .contenxt_processor import get_notification
 from django.contrib import messages
 from control.services import LoginMixin
+from control.forms import EventForm
 
 
 # Create your views here.
@@ -24,24 +25,35 @@ class EventDetails(View):
             "budget": budget,
             "total": total,
         }
+        
         get_notification(request)
         return render(request, "control/event_details.html", context)
 
 
 class CreateEvent(LoginMixin, View):
     def get(self, request):
-        return render(request, "control/event_form.html")
+        form = EventForm()
+        ctx = {"form": form}
+        return render(request, "control/event_form.html", ctx)
 
-    def post(self, request):
-        try:
-            new_event = srv.save_new_event(request.POST, request.FILES, request.user)
-            new_event.full_clean()
+
+    def post(self, request):       
+        form = EventForm(request.POST, request.FILES)
+        # new_event = form.save(commit=False)
+        if form.is_valid():
+            new_event = form.save(commit=False)
+
+            if Event.objects.filter(title=new_event.title).exists():
+                messages.error(request, "Event with this title already exists")
+                return render(request, "control/event_form.html", {"form": form})
+            
+            new_event.organizer = request.user
             new_event.save()
             messages.success(request, "Event Created Successfully")
             return redirect("control:create_budget", new_event)
-        except Exception as e:
-            messages.error(request, "An error occured: ", e)
-            return render(request, "control/event_form.html")
+       
+        # messages.error(request, "An error occured")
+        return render(request, "control/event_form.html", {"form": form})
 
 
 class DeleteEvent(View):
@@ -101,11 +113,16 @@ class CreateBudget(LoginMixin, View):
 
     def post(self, request, event):
         event = Event.objects.get(title=event)
-        new_budget = srv.create_budget(request, event)
-        new_budget.full_clean()
-        new_budget.save()
-        messages.success(request, "Budget Created Successfully")
-        return redirect("main:all_events")
+        try:
+            new_budget = srv.create_budget(request, event)
+            new_budget.full_clean()
+            new_budget.save()
+            messages.success(request, "Budget Created Successfully")
+            return redirect("main:all_events")
+        except Exception as e:
+            messages.error(request, 'Invalid field(s) entry')
+            return render(request, "control/create_budget.html", {"event": event})
+            
 
 
 class EditBudgetView(LoginMixin, View):

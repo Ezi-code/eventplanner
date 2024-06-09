@@ -9,3 +9,4 @@
 
 # Ignore db.sqlite3 file
 db.sqlite3
+venv/

@@ -43,6 +43,7 @@ class RsvpView(View):
             messages.success(request, "RSVP Successful")
             return redirect("main:home")
         else:
+            messages.error(request, "An error occured! ")
             return render(request, "main/rsvp.html", {"event": event})
 
 
