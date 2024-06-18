@@ -14,7 +14,6 @@ def main(request, event, email):
     if "credentials" not in request.session:
         redirect("main:initiate_auth")
 
-
     credentials = Credentials(**request.session["credentials"])
 
     try:
@@ -35,9 +34,8 @@ def main(request, event, email):
             "recurrence": [f"RRULE:FREQ=DAILY;COUNT={event.duration}"],
             "attendees": [{"email": email}],
         }
-        print(event.items(), sep="\n")
+        # print(event.items(), sep="\n")
         event = service.events().insert(calendarId="primary", body=event).execute()
-        
         print(f"event created on google calendar {event.get('htmlLink')}")
         return event.get("htmlLink")
     except HttpError as error:
