@@ -150,7 +150,7 @@ def create_event(request):
 def initiate_oauth(request):
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  # Development only
     flow = Flow.from_client_secrets_file(
-        "C:\\Users\\Ezi\\Documents\\code\\eventplanner\\main\\credentials.json",
+        "C:\\Users\\Ezi\\Documents\\code\\eventplanner\\main\\creds.json",
         scopes=["https://www.googleapis.com/auth/calendar.events"],
         redirect_uri="http://localhost:8000/oauth2callback/",
     )
@@ -165,7 +165,7 @@ def initiate_oauth(request):
 
 def oauth2callback(request):
     flow = Flow.from_client_secrets_file(
-        "C:\\Users\\Ezi\\Documents\\code\\eventplanner\\main\\credentials.json",
+        "C:\\Users\\Ezi\\Documents\\code\\eventplanner\\main\\creds.json",
         scopes=["https://www.googleapis.com/auth/calendar.events"],
         redirect_uri="http://localhost:8000/oauth2callback/",
     )
