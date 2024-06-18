@@ -5,11 +5,8 @@ from django.db.models.signals import pre_save, post_save
 from accounts.models import User
 from settings import base
 
-# Create your models here.
-
 
 class Event(models.Model):
-    # from main.models import RSVP
     class EventState(models.TextChoices):
         OPEN = ("OPEN", "Open")
         CLOSED = ("CLOSED", "Closed")
@@ -18,16 +15,20 @@ class Event(models.Model):
     title = models.CharField(max_length=100, unique=True, blank=False, null=False)
     description = models.CharField(max_length=100, blank=False, null=False)
     location = models.CharField(max_length=150, null=False, default="")
-    image = models.ImageField(upload_to='media/events')
+    image = models.ImageField(upload_to="media/events")
     price_tag = models.FloatField(max_length=float("inf"), default=0)
     state = models.CharField(
         max_length=100, choices=EventState.choices, default=EventState.OPEN
     )
-    date = models.DateField(default=timezone.now)
-    time = models.TimeField(default=timezone.now)
+    start_date = models.DateField(default=timezone.now)
+    start_time = models.TimeField(default=timezone.now)
+    duration = models.IntegerField(
+        help_text="Number of days event will take place", blank=True, default=1
+    )
+    end_date = models.DateField(default=timezone.now)
+    end_time = models.TimeField(default=timezone.now)
     details = models.TextField(blank=False)
     created_at = models.DateTimeField(default=timezone.now)
-    expiry_date = models.DateField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.title}"

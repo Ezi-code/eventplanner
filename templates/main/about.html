@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    height: 50%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: calc(33.33% - 20px);
+    margin-right: 20px;
+    margin-left: 5rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.page-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: lightcoral;
+    color: black;
+}   
+</style>
+
+
+<div class="container">
+    <h1 class="page-header">Our Team</h1>
+    <div class="row">
+        <div class="col-md-4">
+        {% for member in members %}
+
+            <div class="card">
+                <img src="https://imgs.search.brave.com/5RQAyNtk4kK2x3cgOFBsJNfGMwArSM6_HEZykXxHkQk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTYz/NDMwMzY5OC9waG90/by9wb3J0cmFpdC1v/Zi1hLW1pZC1hZHVs/dC1idXNpbmVzc21h/bi1hdC1vZmZpY2Uu/d2VicD9iPTEmcz0x/NzA2NjdhJnc9MCZr/PTIwJmM9NlNPaFBP/OEtpRkh2YVpBMGJv/R0c4ZTd4RGlfTDJH/UkhqU1FBcF9NWkEw/Zz0" class="card-img-top" alt="Placeholder Image" height="200px" width="200px">
+                <div class="card-body">
+                    <h5 class="card-title">John Doe</h5>
+                    <p class="card-text">john.doe@example.com</p>
+                    <p class="card-text">123-456-7890</p>
+                    <p class="card-text">123 Main St, City, State</p>
+                    <p class="card-text">CTO and CIO</p>
+                </div>
+            </div>
+        {% endfor %}
+
+        </div>
+        
+        <div class="col-md-4">
+            <!-- Add more cards here -->
+        </div>
+        <div class="col-md-4">
+            <!-- Add more cards here -->
+        </div>
+    </div>
+</div>
+{% endblock %}

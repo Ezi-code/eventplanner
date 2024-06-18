@@ -5,17 +5,24 @@ from django.utils.text import slugify
 from control.models import Event, Budget
 from settings import base
 from main.models import Attendants
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 
 def update_event(event, request):
     event.title = request.POST.get("title")
     event.description = request.POST.get("description")
     event.location = request.POST.get("location")
-    event.date = request.POST.get("date")
-    event.time = request.POST.get("time")
+    event.start_date = request.POST.get("start_date")
+    event.start_time = request.POST.get("start_time")
+    event.end_date = request.POST.get("end_date")
+    event.end_time = request.POST.get("end_time")
     event.details = request.POST.get("details")
     event.price_tag = request.POST.get("price")
-    event.image = request.FILES.get("image")
+    event.duration = request.POST.get("duration")
+    if request.FILES.get("image"):
+        event.image = request.FILES.get("image")
+
     return event
 
 
@@ -51,10 +58,13 @@ def save_new_event(data, file_data, user):
     organizer = user
     title = data.get("title")
     description = data.get("description")
-    localtion = data.get("location")
+    location = data.get("location")
     image = handle_uploaded_file(file_data["image"])
-    date = data.get("date")
-    time = data.get("time")
+    start_date = data.get("start_date")
+    start_time = data.get("start_time")
+    duration = data.get("duration")
+    end_date = data.get("end_date")
+    end_time = data.get("end_time")
     details = data.get("details")
     price_tag = data.get("price")
     try:
@@ -62,16 +72,19 @@ def save_new_event(data, file_data, user):
             organizer=organizer,
             title=title,
             description=description,
-            location=localtion,
+            location=location,
             image=image,
-            date=date,
-            time=time,
+            start_date=start_date,
+            stat_time=start_time,
+            duration=duration,
+            end_date=end_date,
+            end_time=end_time,
             details=details,
             price_tag=price_tag,
         )
         return new_event
     except Exception as e:
-       return e
+        return e
 
 
 def get_total_cost(event):
@@ -106,19 +119,16 @@ def create_budget(request, event):
 
 
 def update_budget(request, budget):
-    budget.venue_cost = request.POST.get("venue")
-    budget.organizational_cost = request.POST.get("org-cost")
-    budget.expected_guests = request.POST.get("guest-num")
-    budget.cost_of_security = request.POST.get("security")
-    budget.refreshment_cost = request.POST.get("meals")
-    budget.transportation_cost = request.POST.get("transport")
-    budget.misc_cost = request.POST.get("misc")
+    budget.cost_of_venue = float(request.POST.get("venue"))
+    budget.organizational_cost = float(request.POST.get("org-cost"))
+    budget.expected_guests = float(request.POST.get("guest-num"))
+    budget.cost_of_security = float(request.POST.get("security"))
+    budget.refreshment_cost = float(request.POST.get("meals"))
+    budget.transportation_cost = float(request.POST.get("transport"))
+    budget.misc_cost = float(request.POST.get("misc"))
     return budget
 
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-
 class LoginMixin(LoginRequiredMixin):
-    def get_login_url(self) :
-        return reverse_lazy('accounts:login')
+    def get_login_url(self):
+        return reverse_lazy("accounts:login")

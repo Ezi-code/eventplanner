@@ -19,7 +19,6 @@ class Attendants(models.Model):
 
 
 class NewsLetter(models.Model):
-    user = models.CharField(max_length=200, blank=False, null=False, unique=True)
     email = models.EmailField(blank=False, null=False, unique=True)
 
     def __str__(self):

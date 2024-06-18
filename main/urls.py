@@ -10,4 +10,8 @@ urlpatterns = [
     path("rsvp/<str:title>", RsvpView.as_view(), name="rsvp"),
     path("send_mail", Sendmail.as_view(), name="send_mail"),
     path("enquiries", Enquiries.as_view(), name="enquiries"),
+    path("oauth2callback/", oauth2callback, name="oauth2callback"),
+    path("create_event/", create_event, name="create_event"),
+    path("initiate-auth", initiate_oauth, name="initiate_auth"),
+    path("about", AboutView.as_view(), name="about"),
 ]

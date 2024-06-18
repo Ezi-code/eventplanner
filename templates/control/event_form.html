@@ -15,31 +15,50 @@ Create Event
         <form class="form" action="{% url 'control:create_event' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-             {{ form.as_p|safe }}
+            <!-- {{ form.as_p|safe }} -->
 
-            {% comment %} <p>
-                <input type="text" name="title" placeholder="Event title" required autocomplete="on">
+            <p>
+                <label for="title">Event Title:</label>
+                <input type="text" name="title" id="title" placeholder="Event title" required autocomplete="on">
             </p>
             <p>
-                <input type="text" name="description" placeholder="Description of event" required autocomplete="on">
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description" placeholder="Description of event" required autocomplete="on">
             </p>
             <p>
-                <input type="text" name="location" placeholder="Location of event" required autocomplete="on">
+                <label for="location">Location:</label>
+                <input type="text" name="location" id="location" placeholder="Location of event" required autocomplete="on">
             </p>
             <p>
-                <input type="number" name="price" placeholder="Price of RSVP" required autocomplete="on">
+                <label for="price">Price:</label>
+                <input type="number" name="price" id="price" placeholder="Price of RSVP" required autocomplete="on">
             </p>
             <p>
-                <input type="file" name="image" accept="image/*">
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" accept="image/*">
             </p>
             <p>
-                <input type="date" name="date" placeholder="Date of event" required autocomplete="on">
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date" id="start_date" placeholder="Start date of event" required autocomplete="on">
             </p>
             <p>
-                <input type="time" name="time" placeholder="time of event" required autocomplete="on">
+                <label for="start_time">Start Time:</label>
+                <input type="time" name="start_time" id="start_time" placeholder="Start time of event" required autocomplete="on">
+            </p>
+            <p>
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date" id="end_date" placeholder="End date of event" required autocomplete="on">
+            </p>
+            <p>
+                <label for="end_time">End Time:</label>
+                <input type="time" name="end_time" id="end_time" placeholder="Closing time of event" required autocomplete="on">
+            </p>
+            <p>
+                <label for="duration">Duration:</label>
+                <input type="number" name="duration" id="duration" placeholder="Duration of the event" required>
             </p>
             <textarea name="details" id="message" cols="30" rows="10"></textarea>
-            <br /> {% endcomment %}
+            <br />
             <p>
                 <button type="submit">Create Event</button>
             </p>

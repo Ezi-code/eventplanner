@@ -6,20 +6,27 @@ RSVP
 
 {% block content %}
 
+<style>
+    .assistive-text {
+        font-size: small;
+        color: gray;
 
+    }
+</style>
 
 
 <center>
     <h3 class="event-list-h">Available Events</h3>
 </center>
 
+
 <article id="mission mission-sec">
     <div class="mission">
         {% for event in events %}
         <section class="mission-content">
             <h3>{{ event.title }}</h3>
-            <p><i>{{event.date}} | {{event.time}} | {{event.location}}</i></p> <br>
-            {% if event.image %}<img src="{{event.image.url}}">{% endif %}
+            <p><small class="assistive-text">{{event.start_date}} | {{event.start_time}} | {{event.location}}</small></p> <br>
+            {% if event.image %}<img src="{{event.image.url}}" height="200px" width="300px">{% endif %}
             <div>
                 <p><a href="{% url 'main:event-details' event.title %}">{{ event.description }}</a>
                 </p>

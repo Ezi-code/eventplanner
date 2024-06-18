@@ -3,6 +3,7 @@ from django.conf import settings
 from main.models import Attendants, Enquiry
 import os
 from control.models import Event
+from google_api.google_calender import main as send_calendar_invite
 
 
 def news_letter(email):
@@ -36,11 +37,30 @@ The EventPlanner Team"""
     return print("success")
 
 
+def send_calendar_invite_link(request, event, email, invitelink):
+    body = f"""Hi, {email}! You're officially registered for {event.title} happening on {event.start_date} {event.start_time} at {event.location}. We're thrilled you'll be joining us for what promises to be an amazing event.
+    Attached is a calendar invite for the event. Please accept the invite to confirm your attendance. We can't wait to see you at {event.title}!
+    
+    {invitelink}
+
+    Best regards.
+    """
+    email = EmailMessage(
+        subject=f"Calendar Invite for {event.title}",
+        body=body,
+        from_email=settings.EMAIL_HOST_USER,
+        to=[email],
+        reply_to=[settings.EMAIL_HOST_USER],
+    )
+    email.send(fail_silently=False)
+    return print("calendar invite sent successfully")
+
+
 def send_email(event, username, email):
     from_email = settings.EMAIL_HOST_USER
     appname = "EventPlanner"
     subject = f"You're in! Get ready for {event.title} with EventPlanner!"
-    message = f"""Congratulations {username}! You're officially registered for {event.title} happening on {event.date} {event.time} at {event.location}. We're thrilled you'll be joining us for what promises to be an amazing event.
+    message = f"""Congratulations {username}! You're officially registered for {event.title} happening on {event.start_date} {event.start_time} at {event.location}. We're thrilled you'll be joining us for what promises to be an amazing event.
 
 To enhance your experience, we recommend using the {appname} app (if you haven't already) for:
 
@@ -52,7 +72,7 @@ We can't wait to see you at {event.title}!
 
 Best regards,
 
-The {appname} Team"""
+The {appname} Team."""
     email = EmailMessage(
         subject=subject,
         body=message,
@@ -64,11 +84,11 @@ The {appname} Team"""
     return print({"message": "mail sent successfully", "category": "success"})
 
 
-def save_new_rsvp(data, event):
-    name = data.get("name")
-    email = data.get("email")
-    phone = data.get("tel")
-    ticket = data.get("ticket")
+def save_new_rsvp(request, event):
+    name = request.POST.get("name")
+    email = request.POST.get("email")
+    phone = request.POST.get("tel")
+    ticket = request.POST.get("ticket")
     try:
         new_rsvp = Attendants(
             event=event, name=name, email=email, phone=phone, tickets=ticket
@@ -76,6 +96,8 @@ def save_new_rsvp(data, event):
         new_rsvp.full_clean()
         new_rsvp.save()
         send_email(event, name, email)
+        invitelink = send_calendar_invite(request, event=event, email=email)
+        send_calendar_invite_link(request, event, email, invitelink)
         return True
 
     except Exception as e:

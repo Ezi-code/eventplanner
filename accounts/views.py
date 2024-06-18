@@ -24,7 +24,7 @@ class RegisterView(View):
             new_user.full_clean()
             new_user.save()
             messages.success(request, "Account created successfully")
-            return redirect("main:home")
+            return redirect("accounts:login")
 
 
 class LoginView(View):

@@ -36,15 +36,3 @@ class EventForm(forms.ModelForm):
             "time": "Event Time",
         }     
 
-    # def cleaned_data(self):
-    #     cleaned_data = super().cleaned_data
-    #     title = cleaned_data.get("title")
-    #     description = cleaned_data.get("description")
-    #     location = cleaned_data.get("location")
-    #     image = cleaned_data.get("image")
-    #     price_tag = cleaned_data.get("price_tag")
-    #     date = cleaned_data.get("date")
-    #     time = cleaned_data.get("time")
-    #     details = cleaned_data.get("details")
-    #     return cleaned_data
-
