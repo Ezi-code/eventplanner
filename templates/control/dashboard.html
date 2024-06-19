@@ -10,14 +10,19 @@ Dashboard
     <section class="options">
         <a href="{% url 'control:dashboard' %}">My Events</a>
         <a href="{% url 'control:create_event' %}">Create Event</a>
-        <a href="{% url 'control:notifications' %}">Notifications</a>
+        <!-- <a href="{% url 'control:notifications' %}">Notifications</a> -->
     </section>
 </div>
 {% for event in events %}
-<section class="notification">
-    <p><b>{{event.title}} | {{event.date}} | {{ event.time }}</b></p>
+<section class="notification" style="margin-bottom: 20px;">
+    <p>
+        <b>{{event.title}} <br> <small>{{event.start_date}} to {{event.end_date}} @ {{event.location}}</small></b>
+        
+    </p>
     <a href="{% url 'control:event_details' event.title %}">Detail</a>
 </section>
+{% empty %}
+<h4 style="margin-top: 10px; margin-bottom: 50px; padding: 5px;">You have not created any events yet!</h4>
 {% endfor %}
 
 {% endblock content %}

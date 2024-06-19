@@ -72,7 +72,7 @@
                 <!-- <a href="{% url 'control:create_event' %}">create event</a> -->
                 <a href="{% url 'control:dashboard' %}">Dashboard</a>
                 <a href="{% url 'accounts:logout' %}">logout</a>
-                <a href="#">{{request.user}}</a>
+                <a href="#">{{request.user.name}}</a>
                 {% else %}
                 <a href="{% url 'accounts:register' %}">register</a>
                 <a href="{% url 'accounts:login' %}">login</a>
@@ -104,7 +104,7 @@
                 <li><a href="">facebook</a></li>
                 <li><a href="">twitter</a></li>
                 <li><a href="">instagram</a></li>
-                <li><a href="">the excahnge</a></li>
+                <li><a href="{% url 'main:initiate_auth' %}">Connect Google Calendar</a></li>
             </ul>
         </section>
         <section class="useful-links section">
@@ -121,4 +121,4 @@
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
-<html />
+</html>

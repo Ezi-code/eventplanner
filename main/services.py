@@ -1,6 +1,6 @@
 from django.core.mail import EmailMessage
 from django.conf import settings
-from main.models import Attendants, Enquiry
+from main.models import Attendee, Enquiry
 import os
 from control.models import Event
 from google_api.google_calender import main as send_calendar_invite
@@ -90,7 +90,7 @@ def save_new_rsvp(request, event):
     phone = request.POST.get("tel")
     ticket = request.POST.get("ticket")
     try:
-        new_rsvp = Attendants(
+        new_rsvp = Attendee(
             event=event, name=name, email=email, phone=phone, tickets=ticket
         )
         new_rsvp.full_clean()

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-RSVP
+Events List
 {% endblock title %}
 
 {% block content %}
@@ -24,7 +24,7 @@ RSVP
     <div class="mission">
         {% for event in events %}
         <section class="mission-content">
-            <h3>{{ event.title }}</h3>
+            <h4>{{ event.title }}</h4>
             <p><small class="assistive-text">{{event.start_date}} | {{event.start_time}} | {{event.location}}</small></p> <br>
             {% if event.image %}<img src="{{event.image.url}}" height="200px" width="300px">{% endif %}
             <div>
@@ -59,7 +59,7 @@ RSVP
             </div>
         </section>
         {%empty%}
-        <p>No items yet </p>
+        <p class="">No items yet </p>
         {% endfor %}
     </div>
 </article>

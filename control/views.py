@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from control.models import Event, Budget
 from control import services as srv
-from main.models import Attendants, Enquiry
+from main.models import Attendee, Enquiry
 from .contenxt_processor import get_notification
 from django.contrib import messages
-from control.services import LoginMixin
+from control.services import LoginMixin, save_new_event
 from control.forms import EventForm
 
 
@@ -15,7 +15,7 @@ class EventDetails(View):
 
     def get(self, request, title):
         event = self.model.objects.get(title=title)
-        attendants = Attendants.objects.filter(event=event).count()
+        attendants = Attendee.objects.filter(event=event).count()
         total = srv.get_total_cost(event)
         budget = Budget.objects.get(event=event)
 
@@ -37,21 +37,12 @@ class CreateEvent(LoginMixin, View):
         return render(request, "control/event_form.html", ctx)
 
     def post(self, request):
-        form = EventForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_event = form.save(commit=False)
-
-            if Event.objects.filter(title=new_event.title).exists():
-                messages.error(request, "Event with this title already exists")
-                return render(request, "control/event_form.html", {"form": form})
-
-            new_event.organizer = request.user
-            new_event.save()
-            messages.success(request, "Event Created Successfully")
-            return redirect("control:create_budget", new_event)
-
-        messages.error(request, "An error occured")
-        return render(request, "control/event_form.html", {"form": form})
+        file_data = request.FILES
+        new_event = save_new_event(request.POST, file_data, request.user)
+        new_event.clean_fields()
+        new_event.save()
+        messages.success(request, "Event created!")
+        return redirect("control:create_budget", new_event)
 
 
 class DeleteEvent(View):
@@ -95,7 +86,7 @@ class Notification(LoginMixin, View):
 
 class GuestList(LoginMixin, View):
     def get(self, request, event):
-        guests = Attendants.objects.filter(event=event).all()
+        guests = Attendee.objects.filter(event=event).all()
         event = Event.objects.get(id=event)
         ticket_amoaunt = []
         print(ticket_amoaunt)

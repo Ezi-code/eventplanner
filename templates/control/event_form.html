@@ -5,6 +5,12 @@ Create Event
 {% endblock title %}
 
 {% block content %}
+<style>
+    .form p{
+        padding: 5px;
+        padding-top: 7px;
+    }
+</style>
 
 
 <article class="contact-us" id="contact">
@@ -17,49 +23,49 @@ Create Event
 
             <!-- {{ form.as_p|safe }} -->
 
-            <p>
+            <p  class="form-item">
                 <label for="title">Event Title:</label>
                 <input type="text" name="title" id="title" placeholder="Event title" required autocomplete="on">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="description">Description:</label>
                 <input type="text" name="description" id="description" placeholder="Description of event" required autocomplete="on">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="location">Location:</label>
                 <input type="text" name="location" id="location" placeholder="Location of event" required autocomplete="on">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="price">Price:</label>
                 <input type="number" name="price" id="price" placeholder="Price of RSVP" required autocomplete="on">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="image">Image:</label>
                 <input type="file" name="image" id="image" accept="image/*">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="start_date">Start Date:</label>
                 <input type="date" name="start_date" id="start_date" placeholder="Start date of event" required autocomplete="on">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="start_time">Start Time:</label>
                 <input type="time" name="start_time" id="start_time" placeholder="Start time of event" required autocomplete="on">
             </p>
-            <p>
-                <label for="end_date">End Date:</label>
+            <p class="form-item">
+                <label for="end_date">Clossing Date:</label>
                 <input type="date" name="end_date" id="end_date" placeholder="End date of event" required autocomplete="on">
             </p>
-            <p>
-                <label for="end_time">End Time:</label>
+            <p class="form-item">
+                <label for="end_time">Clossing Time:</label>
                 <input type="time" name="end_time" id="end_time" placeholder="Closing time of event" required autocomplete="on">
             </p>
-            <p>
+            <p class="form-item">
                 <label for="duration">Duration:</label>
                 <input type="number" name="duration" id="duration" placeholder="Duration of the event" required>
             </p>
-            <textarea name="details" id="message" cols="30" rows="10"></textarea>
+            <textarea class="form-item" name="details" id="message" cols="30" rows="10"></textarea>
             <br />
-            <p>
+            <p class="form-item">
                 <button type="submit">Create Event</button>
             </p>
         </form>

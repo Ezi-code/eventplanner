@@ -1,19 +1,24 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}
 Home
 {% endblock title %}
 
 {% block content %}
 
+<style>
+    .banner{
+        background-image: url("{% static 'images/b3.jpg' %}");
+        background-size: cover;
+    }
+</style>
 <main>
     <article>
-        <section class="banner"
-            style="background-image:url('https://www.shutterstock.com/image-photo/luxury-table-setting-260nw-632155661.jpg');">
+        <section class="banner">
             <div class="banner-header">
                 <h2>
                     Wants to plan your event? <br> <span class="h-color"><a href="{% url 'control:create_event'%}"
-                            style="text-decoration: none; color: white;">Get Started</a></span>
+                            style="text-decoration: none; color: white;padding-right:5px;">Get Started</a></span>
                 </h2>
             </div>
         </section>
@@ -38,7 +43,6 @@ Home
                     <h3>Effortless Coordination</h3>
                     <p>Coordinate with your team and vendors effortlessly. Communicate in real-time, share updates, and ensure everyone is on the same page to make your event a success.</p>
                 </div>
-                <a href="{% url 'main:initiate_auth' %}">Create Event</a>
             </div>
         </section>
     </article>

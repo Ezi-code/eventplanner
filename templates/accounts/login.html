@@ -19,6 +19,9 @@ Login
             <p>
                 <input type="password" name="password" id="email" placeholder="Password" required autocomplete="on">
             </p>
+            <div style="margin-top: 10px;">
+               <small>Create an account if you dan't have one <a  href="{% url 'accounts:register' %}">here</a></small>
+            </div>
             <p>
                 <button type="submit">Login</button>
             </p>

@@ -5,7 +5,7 @@ from control.models import Event
 from django.db.models.signals import pre_save
 
 
-class Attendants(models.Model):
+class Attendee(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=False, null=False)
     email = models.EmailField()
@@ -37,6 +37,14 @@ class Enquiry(models.Model):
         return f"{self.name}"
 
 
-@receiver(pre_save, sender=Attendants)
-def set_totla_cost(sender, instance: Attendants, *args, **kwargs):
+@receiver(pre_save, sender=Attendee)
+def set_totla_cost(sender, instance: Attendee, *args, **kwargs):
     instance.total_cost = instance.event.price_tag * instance.tickets
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    email = models.EmailField()
+    position = models.CharField(max_length=150, blank=True)
+    address = models.CharField(max_length=200, blank=True)
+    profile_image = models.ImageField(upload_to="media/team/", blank=True)

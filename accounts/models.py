@@ -5,7 +5,7 @@ import uuid
 
 
 class UserManager(BaseUserManager):
-    def create_user(self,email, password, **extra_fields: Any):
+    def create_user(self, email, password, **extra_fields: Any):
         if not email:
             raise ValueError("Username field cannot be empty")
         if not password:
@@ -16,12 +16,11 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self,email,password, **extra_fields):
+    def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_active", True)
         extra_fields.setdefault("is_superuser", True)
         return self.create_user(email, password, **extra_fields)
-
 
 
 class User(AbstractUser):
@@ -38,11 +37,11 @@ class User(AbstractUser):
     gender = models.CharField(
         max_length=10, choices=Gender.choices, default=Gender.OTHER
     )
-    is_staff =models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
     USERNAME_FIELD = "email"
-    EMAIL_FIELD = "email"
+    # EMAIL_FIELD = "email"
     REQUIRED_FIELDS = []

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  About Us
+{% endblock title %}
+
 {% block content %}
 
 <style>
@@ -63,13 +67,12 @@
         {% for member in members %}
 
             <div class="card">
-                <img src="https://imgs.search.brave.com/5RQAyNtk4kK2x3cgOFBsJNfGMwArSM6_HEZykXxHkQk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTYz/NDMwMzY5OC9waG90/by9wb3J0cmFpdC1v/Zi1hLW1pZC1hZHVs/dC1idXNpbmVzc21h/bi1hdC1vZmZpY2Uu/d2VicD9iPTEmcz0x/NzA2NjdhJnc9MCZr/PTIwJmM9NlNPaFBP/OEtpRkh2YVpBMGJv/R0c4ZTd4RGlfTDJH/UkhqU1FBcF9NWkEw/Zz0" class="card-img-top" alt="Placeholder Image" height="200px" width="200px">
+                <img src="{{ member.profile_image.url }}" class="card-img-top" alt="Placeholder Image" height="200px" width="200px">
                 <div class="card-body">
-                    <h5 class="card-title">John Doe</h5>
-                    <p class="card-text">john.doe@example.com</p>
-                    <p class="card-text">123-456-7890</p>
-                    <p class="card-text">123 Main St, City, State</p>
-                    <p class="card-text">CTO and CIO</p>
+                    <h5 class="card-title">{{member.name}}</h5>
+                    <p class="card-text">{{member.email}}</p>
+                    <p class="card-text">{{member.address}}</p>
+                    <p class="card-text">{{member.position}}</p>
                 </div>
             </div>
         {% endfor %}

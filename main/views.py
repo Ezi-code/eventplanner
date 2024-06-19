@@ -2,7 +2,7 @@ import os
 from typing import Any
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
-from main.models import Event, NewsLetter
+from main.models import Event, NewsLetter, Team
 from main.services import save_new_rsvp, news_letter, get_enquriy
 from django.contrib import messages
 from google.oauth2.credentials import Credentials
@@ -180,5 +180,5 @@ def oauth2callback(request):
 
 class AboutView(View):
     def get(self, request):
-        members = [1, 2, 3, 4, 5]
+        members = Team.objects.all()
         return render(request, "main/about.html", {"members": members})

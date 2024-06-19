@@ -7,14 +7,7 @@ Details of {{event.title}}
 {% block content %}
 
 <section class="main">
-    <div class="user-nav">
-        <section class="options">
-            <a href="{% url 'control:dashboard' %}">My Events</a>
-            <a href="{% url 'control:create_event' %}">Create Event</a>
-            <a href="{% url 'control:guest-list' event.id %}">Guest list</a>
-            <!-- <a href="" onclick="hello()">Notifications</a> -->
-        </section>
-    </div>
+    {% include "control/inner_nav.html" %}
 
     <section class="eventdetails">
         <center>
@@ -27,12 +20,20 @@ Details of {{event.title}}
                 <td>{{event.title}}</td>
             </tr>
             <tr>
-                <td><b>Date</b></td>
-                <td>{{event.date}}</td>
+                <td><b>Start Date</b></td>
+                <td>{{event.start_date}}</td>
             </tr>
             <tr>
-                <td><b>Time</b></td>
-                <td>{{event.time}}</td>
+                <td><b>Start Time</b></td>
+                <td>{{event.start_time}}</td>
+            </tr>
+            <tr>
+                <td><b>Clossing Date</b></td>
+                <td>{{event.end_date}}</td>
+            </tr>
+            <tr>
+                <td><b>Clossing Time</b></td>
+                <td>{{event.end_time}}</td>
             </tr>
             <tr>
                 <td><b>Location</b></td>
@@ -57,7 +58,7 @@ Details of {{event.title}}
                 <td>GHS {{budget.total_cost}}</td>
             </tr>
             <tr>
-                <td><b>Amount of ticket sales</b></td>
+                <td><b>Amount from ticket sales</b></td>
                 <td>GHS {{total}}</td>
             </tr>
         </table> <br>

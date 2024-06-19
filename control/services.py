@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.text import slugify
 from control.models import Event, Budget
 from settings import base
-from main.models import Attendants
+from main.models import Attendee
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
@@ -75,7 +75,7 @@ def save_new_event(data, file_data, user):
             location=location,
             image=image,
             start_date=start_date,
-            stat_time=start_time,
+            start_time=start_time,
             duration=duration,
             end_date=end_date,
             end_time=end_time,
@@ -89,7 +89,7 @@ def save_new_event(data, file_data, user):
 
 def get_total_cost(event):
     total = 0
-    tickets = Attendants.objects.filter(event=event).all()
+    tickets = Attendee.objects.filter(event=event).all()
     for ticket in tickets:
         total = total + ticket.total_cost
     return total

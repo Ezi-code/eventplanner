@@ -5,16 +5,28 @@ Guest List
 {% endblock title %}
 
 {% block content %}
-<section class="main">
-    <div class="user-nav">
-        <section class="options">
-            <a href="{% url 'control:dashboard' %}">My Events</a>
-            <a href="{% url 'control:create_event' %}">Create Event</a>
-            <a href="">Guest list</a>
-            <!-- <a href="" onclick="hello()">Notifications</a> -->
-        </section>
-    </div>
+<style>
+    .table {
+        width: 80%;
+        margin: auto;
+    }
+    .t-headers {
+        background-color: #f2f2f2;
+    }
+    .t-body {
+        background-color: #f9f9f9;
+    }
+    .table td {
+        padding: 10px;
 
+    }
+    .t-hd {
+        padding: 10px;
+    }
+</style>
+
+<section class="main">
+    {% include "control/inner_nav.html" %}
     <section class="eventdetails">
         <center>
             <h4>
@@ -23,26 +35,24 @@ Guest List
         </center>
         <br>
         <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Tickets</th>
-                    <th>Amount</th>
+            <thead class="t-headers">
+                <tr class="t-hd-row">
+                    <th class="t-hd">Name</th>
+                    <th class="t-hd">Number of tickets</th>
+                    <th class="t-hd">Amount</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="t-body">
                 {% for guest in guests %}
                 <tr>
-                    <td>{{guest.name}}</td>
-                    <td>{{guest.tickets}}</td>
-                    <td>{{guest.total_cost}}</td>
+                    <td class="t-td">{{guest.name}}</td>
+                    <td class="t-td">{{guest.tickets}}</td>
+                    <td class="t-td">{{guest.total_cost}}</td>
                 </tr>
                 {% endfor %}
 
             </tbody>
-        </table> <br>
-        <a class="edit-btn" href="{% url 'control:edit_event' event.title %}">edit</a>
-        <a class="del-btn" href="{% url 'control:delete_event' event.title %}">delete</a>
+        </table> 
     </section>
 
     {% endblock content %}
